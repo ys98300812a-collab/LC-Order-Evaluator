@@ -3,19 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>叫貨評估工具 v1.0</title>
-
 <meta name="robots" content="noindex, nofollow">
-  
+<title>叫貨評估工具</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@700;900&display=swap');
 :root{
-  --bg:#080b12;--surface:#0e1220;--card:#111827;--border:#1e2d45;
-  --accent:#2563eb;--accent2:#06b6d4;--warn:#f59e0b;--danger:#ef4444;
-  --success:#10b981;--text:#e2e8f4;--muted:#4b6080;
-  --grad1:#2563eb;--grad2:#06b6d4;
+  --bg:#070b0f;--surface:#0f1520;--card:#1e2636;--border:#2e3f58;
+  --accent:#3b82f6;--accent2:#06b6d4;--warn:#f59e0b;--danger:#f87171;
+  --success:#34d399;--text:#ecf2fc;--muted:#7a95b8;
+  --grad1:#3b82f6;--grad2:#06b6d4;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
@@ -24,8 +22,8 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 body::before{
   content:'';position:fixed;inset:0;
   background-image:
-    linear-gradient(rgba(37,99,235,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(37,99,235,.05) 1px,transparent 1px);
+    linear-gradient(rgba(59,130,246,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,.07) 1px,transparent 1px);
   background-size:48px 48px;pointer-events:none;z-index:0;
   animation:gridshift 20s linear infinite;
 }
@@ -116,32 +114,32 @@ body::after{
 .notice-items{display:flex;gap:16px;flex-wrap:wrap}
 .notice-items span{opacity:.75}
 .notice-items span::before{content:'·';margin-right:6px;opacity:.5}
-.tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--border);margin-top:24px}
+.tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid #3a5070;margin-top:24px}
 .tab-btn{font-family:'Noto Sans TC',sans-serif;font-size:13px;font-weight:500;padding:10px 18px;
   cursor:pointer;border:none;background:transparent;color:var(--muted);
   border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-pane{display:none}.tab-pane.active{display:block}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:12px}
+.card{background:#252f42;border:1px solid #3a5070;border-radius:12px;padding:18px 22px;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
 .card-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  color:#8aa4c8;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .card-title::before{content:'';display:block;width:3px;height:13px;background:var(--accent);border-radius:2px}
-.dz{border:1.5px dashed var(--border);border-radius:10px;padding:18px;text-align:center;
-  cursor:pointer;transition:all .2s;background:rgba(61,126,255,.03);position:relative}
+.dz{border:1.5px dashed #3a5070;border-radius:10px;padding:18px;text-align:center;
+  cursor:pointer;transition:all .2s;background:rgba(59,130,246,.05);position:relative}
 .dz:hover,.dz.over{border-color:var(--accent);background:rgba(61,126,255,.08)}
 .dz input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .dz-icon{font-size:24px;margin-bottom:5px}
-.dz-text{font-size:13px;color:var(--muted)}
+.dz-text{font-size:13px;color:#8aa4c8}
 .dz-text strong{color:var(--accent)}
 .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .chip{background:rgba(38,222,129,.12);border:1px solid rgba(38,222,129,.3);color:var(--success);
   font-size:11px;font-family:'JetBrains Mono',monospace;padding:3px 10px;border-radius:20px;
   max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .frow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.frow label{font-size:12px;color:var(--muted);width:82px;flex-shrink:0}
+.frow label{font-size:12px;color:#8aa4c8;width:82px;flex-shrink:0}
 .fpick{font-family:'Noto Sans TC',sans-serif;font-size:12px;padding:6px 14px;border-radius:6px;
-  border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;
+  border:1px solid #3a5070;background:#1e2a3e;color:var(--text);cursor:pointer;
   white-space:nowrap;transition:all .15s;flex-shrink:0}
 .fpick:hover{border-color:var(--accent);color:var(--accent)}
 .fpick input{display:none}
@@ -149,18 +147,18 @@ body::after{
   flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fname.empty{color:var(--muted);font-style:italic}
 .srow{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
-.slbl{font-size:12px;color:var(--muted);width:96px;flex-shrink:0}
+.slbl{font-size:12px;color:#8aa4c8;width:96px;flex-shrink:0}
 .sctl{display:flex;align-items:center;gap:8px}
 input[type=number],input[type=text]{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;
-  background:var(--surface);border:1px solid var(--border);color:var(--warn);
+  background:#1a2133;border:1px solid #3a5070;color:var(--warn);
   border-radius:8px;padding:6px 12px;width:80px;text-align:center;outline:none;transition:border .15s}
 input[type=number]:focus,input[type=text]:focus{border-color:var(--accent)}
 input.wide{width:160px;text-align:left}
-.tgl{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.tgl{display:flex;border:1px solid #3a5070;border-radius:8px;overflow:hidden}
 .tgl-opt{font-family:'Noto Sans TC',sans-serif;font-size:12px;padding:7px 16px;cursor:pointer;
-  background:var(--surface);color:var(--muted);border:none;transition:all .15s}
+  background:#1e2a3e;color:#7a95b8;border:none;transition:all .15s}
 .tgl-opt.on{background:var(--accent);color:#fff;font-weight:700}
-.hint{font-size:11px;color:var(--muted)}
+.hint{font-size:11px;color:#7a94b8}
 .run-btn{width:100%;padding:15px;font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;
   border:none;border-radius:12px;cursor:pointer;transition:all .2s;margin-bottom:12px}
 .run-btn.green{background:linear-gradient(135deg,#26de81,#1aab60);color:#fff}
@@ -168,12 +166,12 @@ input.wide{width:160px;text-align:left}
 .run-btn.orange{background:linear-gradient(135deg,#ff9f43,#e67e22);color:#fff}
 .run-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .run-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.logbox{background:#0a0c14;border:1px solid var(--border);border-radius:10px;padding:12px 14px;
+.logbox{background:#111826;border:1px solid var(--border);border-radius:10px;padding:12px 14px;
   font-family:'JetBrains Mono',monospace;font-size:12px;color:#7affb2;
   min-height:90px;max-height:180px;overflow-y:auto;white-space:pre-wrap;line-height:1.7}
 .logbox .err{color:var(--danger)}.logbox .warn{color:var(--warn)}.logbox .ok{color:var(--success);font-weight:700}
-.ibox{background:rgba(61,126,255,.08);border:1px solid rgba(61,126,255,.25);border-radius:8px;
-  padding:10px 14px;font-size:12px;color:#aabfff;line-height:1.8;margin-bottom:12px}
+.ibox{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);border-radius:8px;
+  padding:10px 14px;font-size:12px;color:#c8dcff;line-height:1.8;margin-bottom:12px}
 .ibox b{color:var(--accent2)}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 </style>
@@ -193,9 +191,9 @@ input.wide{width:160px;text-align:left}
         </p>
       </div>
       <div class="hero-meta">
-        <div class="meta-badge ver">⚡ v1.1</div>
-        <div class="meta-badge">📅 2026.02</div>
-        <a href="mailto:ys98300812a@gmail.com" class="meta-badge author" style="text-decoration: none; color: inherit; cursor: pointer;">👤 Hugo ✉️</a>
+        <div class="meta-badge ver" id="meta-ver"></div>
+        <div class="meta-badge" id="meta-date"></div>
+        <div class="meta-badge author" id="meta-author"></div>
       </div>
     </div>
 
@@ -212,7 +210,6 @@ input.wide{width:160px;text-align:left}
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       <div class="notice-items">
         <span>僅供內部使用</span>
-        <span>請放心使用，資料無對外上傳</span>
         <span>資料請妥善保管</span>
       </div>
     </div>
@@ -346,19 +343,39 @@ input.wide{width:160px;text-align:left}
 <div style="position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 20px 32px">
   <div style="border-top:1px solid #1e2d45;margin-top:8px;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
     <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#2a3d5a;letter-spacing:1px">
-      ORDER FORECAST SYSTEM · v1.0 · 2026.02
+      ORDER FORECAST SYSTEM · <span id="ft-ver"></span> · <span id="ft-date"></span>
     </div>
     <div style="display:flex;gap:16px">
       <span style="font-size:11px;color:#2a3d5a">僅供內部使用</span>
       <span style="font-size:11px;color:#2a3d5a">·</span>
       <span style="font-size:11px;color:#2a3d5a">資料請妥善保管</span>
       <span style="font-size:11px;color:#2a3d5a">·</span>
-      <span style="font-size:11px;color:#2a3d5a">by Hugo</span>
+      <span style="font-size:11px;color:#2a3d5a">Created by <span id="ft-author"></span></span>
     </div>
   </div>
 </div>
 
 <script>
+// ══════════════════════════════════════════════════════════════
+//  ✏️  設定區 — 改版本、日期、創造者只需改這裡
+// ══════════════════════════════════════════════════════════════
+const APP_VERSION = 'v1.3';
+const APP_DATE    = '2026.02';
+const APP_AUTHOR  = 'Hugo';
+const APP_EMAIL   = 'ys98300812a@email.com'; // 點名字時寄信用
+
+// Auto-fill version info into DOM
+document.addEventListener('DOMContentLoaded',()=>{
+  document.title = `叫貨評估工具 ${APP_VERSION}`;
+  const set=(id,html)=>{const el=document.getElementById(id);if(el)el.innerHTML=html;};
+  set('meta-ver',  `⚡ ${APP_VERSION}`);
+  set('meta-date', `📅 ${APP_DATE}`);
+  set('meta-author',`👤 <a href="mailto:${APP_EMAIL}" style="color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer">${APP_AUTHOR}</a>`);
+  set('ft-ver',    APP_VERSION);
+  set('ft-date',   APP_DATE);
+  set('ft-author', `<a href="mailto:${APP_EMAIL}" style="color:inherit;text-decoration:underline;text-underline-offset:3px">${APP_AUTHOR}</a>`);
+});
+
 // ══ STATE ══════════════════════════════════════════════════
 const S={orders:[],mapping:null,template:null,ex:[],forecast:null,actual:[],mapping3:null,mode:'monthly'};
 
