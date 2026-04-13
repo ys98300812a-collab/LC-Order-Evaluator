@@ -8,6 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@700;900&display=swap');
 :root{
   --bg:#070b0f;--surface:#0f1520;--card:#1e2636;--border:#2e3f58;
@@ -76,7 +77,7 @@ body::after{
 
 /* Meta info block */
 .hero-meta{
-  display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;min-width:120px;
 }
 .meta-badge{
   font-family:'JetBrains Mono',monospace;font-size:11px;
@@ -174,6 +175,93 @@ input.wide{width:160px;text-align:left}
   padding:10px 14px;font-size:12px;color:#c8dcff;line-height:1.8;margin-bottom:12px}
 .ibox b{color:var(--accent2)}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ── Light theme ── */
+[data-theme="light"]{
+  --bg:#f0f4f8;--surface:#e2e8f0;--card:#ffffff;--border:#cbd5e1;
+  --accent:#2563eb;--accent2:#0891b2;--warn:#d97706;--danger:#dc2626;
+  --success:#059669;--text:#0f172a;--muted:#64748b;
+  --grad1:#2563eb;--grad2:#0891b2;
+}
+[data-theme="light"] body::before{background-image:linear-gradient(rgba(37,99,235,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.04) 1px,transparent 1px)}
+[data-theme="light"] body::after{display:none}
+[data-theme="light"] .hero h1{background:linear-gradient(135deg,#0f172a 0%,#1d4ed8 60%,#0891b2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+[data-theme="light"] .card{background:#ffffff;border-color:#cbd5e1;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+[data-theme="light"] .logbox{background:#f8fafc;border-color:#cbd5e1;color:#059669}
+[data-theme="light"] .chip{background:rgba(5,150,105,.1);border-color:rgba(5,150,105,.3);color:var(--success)}
+[data-theme="light"] .meta-badge{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.2);color:#1d4ed8}
+[data-theme="light"] .meta-badge.ver{background:rgba(8,145,178,.08);border-color:rgba(8,145,178,.2);color:#0891b2}
+[data-theme="light"] .meta-badge.author{background:rgba(5,150,105,.08);border-color:rgba(5,150,105,.2);color:#059669}
+[data-theme="light"] .hero-badge{background:rgba(8,145,178,.1);border-color:rgba(8,145,178,.25);color:#0891b2}
+[data-theme="light"] .notice-bar{background:rgba(217,119,6,.07);border-color:rgba(217,119,6,.2);color:#92400e}
+[data-theme="light"] .ibox{background:rgba(37,99,235,.06);border-color:rgba(37,99,235,.2);color:#1e40af}
+[data-theme="light"] .tgl-opt.on{background:var(--accent);color:#fff}
+[data-theme="light"] .run-btn:hover{box-shadow:0 6px 20px rgba(37,99,235,.25)}
+[data-theme="light"] .dz{background:rgba(37,99,235,.03);border-color:#c4d4e8}
+[data-theme="light"] .dz:hover,[data-theme="light"] .dz.over{background:rgba(37,99,235,.07);border-color:var(--accent)}
+[data-theme="light"] .fpick{background:#eef2f8;border-color:#c4d4e8}
+[data-theme="light"] .tgl-opt{background:#eef2f8;color:#64748b}
+[data-theme="light"] input[type=number],[data-theme="light"] input[type=text]{background:#f8fafc;border-color:#c4d4e8;color:#b45309}
+[data-theme="light"] .tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
+[data-theme="light"] .lang-group{border-color:#c4d4e8}
+[data-theme="light"] .ctrl-btn{background:#eef2f8;border-right-color:#c4d4e8;color:#6b7fa3}
+[data-theme="light"] .ctrl-btn:hover{background:rgba(37,99,235,.08);color:#2563eb}
+[data-theme="light"] .ctrl-btn.active{background:#2563eb;color:#fff}
+[data-theme="light"] .theme-toggle{background:#eef2f8;border-color:#c4d4e8}
+[data-theme="light"] .theme-toggle:hover{border-color:#2563eb;background:rgba(37,99,235,.1)}
+
+
+/* ── Theme & Lang controls ── */
+.lang-group{
+  display:flex;border:1px solid var(--border);border-radius:8px;
+  overflow:hidden;margin-bottom:8px;
+}
+.ctrl-btn{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:5px 11px;cursor:pointer;
+  background:var(--surface);border:none;border-right:1px solid var(--border);
+  color:var(--muted);transition:all .15s;white-space:nowrap;
+}
+.ctrl-btn:last-child{border-right:none}
+.ctrl-btn:hover{color:var(--text);background:rgba(59,130,246,.08)}
+.ctrl-btn.active{background:var(--accent);color:#fff;font-weight:700}
+.ctrl-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.theme-toggle{
+  display:flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:15px;cursor:pointer;transition:all .15s;flex-shrink:0;
+}
+.theme-toggle:hover{border-color:var(--accent);background:rgba(59,130,246,.1)}
+
+/* ── EX Preset slots ── */
+.preset-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;padding:10px 12px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:8px}
+.preset-slots{display:flex;gap:6px;flex-wrap:wrap}
+.preset-slot{
+  display:flex;align-items:center;gap:0;
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  background:var(--surface);transition:border-color .15s;
+}
+.preset-slot.active{border-color:var(--accent);background:rgba(59,130,246,.1)}
+.pslot-name{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:5px 10px;color:var(--muted);cursor:pointer;
+  transition:color .15s;max-width:90px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.preset-slot:hover .pslot-name{color:var(--text)}
+.preset-slot.active .pslot-name{color:var(--accent);font-weight:700}
+.pslot-save{
+  font-size:11px;padding:5px 7px;
+  background:transparent;border:none;border-left:1px solid var(--border);
+  cursor:pointer;color:var(--muted);transition:all .15s;
+}
+.pslot-save:hover{background:rgba(59,130,246,.15);color:var(--accent)}
+[data-theme="light"] .preset-bar{background:rgba(37,99,235,.05);border-color:rgba(37,99,235,.15)}
+[data-theme="light"] .preset-slot{background:#f0f4fb;border-color:#cdd8ee}
+[data-theme="light"] .preset-slot.active{border-color:#2563eb;background:#dbeafe}
+[data-theme="light"] .preset-slot.active .pslot-name{color:#2563eb}
+[data-theme="light"] .pslot-save{border-left-color:#cdd8ee}
 </style>
 </head>
 <body>
@@ -184,13 +272,22 @@ input.wide{width:160px;text-align:left}
         <div class="hero-badge">
           <span>ORDER FORECAST SYSTEM</span>
         </div>
-        <h1>叫貨評估工具</h1>
+        <h1 id="hero-title">叫貨評估工具</h1>
         <p class="hero-sub">
-          <span>自動化叫貨分析平台</span> —— 整合訂單歷史・經銷商採購明細・準確度追蹤<br>
-          雙擊 HTML 即可使用，無需安裝任何軟體
+          <span id="hero-sub1">自動化叫貨分析平台 —— 整合訂單歷史・採購明細・準確度追蹤</span><br>
+          <span id="hero-sub2">雙擊 HTML 即可使用，無需安裝任何軟體</span>
         </p>
       </div>
       <div class="hero-meta">
+        <div class="ctrl-row">
+          <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="切換深淺色">🌙</button>
+          <div class="lang-group">
+            <button class="ctrl-btn" onclick="setLang('zh-TW')" id="lang-zh-TW">繁中</button>
+            <button class="ctrl-btn" onclick="setLang('zh-CN')" id="lang-zh-CN">简中</button>
+            <button class="ctrl-btn" onclick="setLang('en')" id="lang-en">EN</button>
+            <button class="ctrl-btn" onclick="setLang('ja')" id="lang-ja">日</button>
+          </div>
+        </div>
         <div class="meta-badge ver" id="meta-ver"></div>
         <div class="meta-badge" id="meta-date"></div>
         <div class="meta-badge author" id="meta-author"></div>
@@ -198,146 +295,238 @@ input.wide{width:160px;text-align:left}
     </div>
 
     <div class="features">
-      <div class="feat"><span class="feat-dot green"></span>叫貨分析 ＋ 建議叫貨量</div>
-      <div class="feat"><span class="feat-dot blue"></span>EX 採購明細合併統計</div>
-      <div class="feat"><span class="feat-dot cyan"></span>叫貨準確度對比追蹤</div>
-      <div class="feat"><span class="feat-dot orange"></span>料號異常自動偵測</div>
-      <div class="feat"><span class="feat-dot green"></span>安全庫存比例可調整</div>
-      <div class="feat"><span class="feat-dot blue"></span>支援月均 ／ 週數預估</div>
+      <div class="feat"><span class="feat-dot green"></span><span id="feat1">叫貨分析 ＋ 建議叫貨量</span></div>
+      <div class="feat"><span class="feat-dot blue"></span><span id="feat2">採購明細合併統計</span></div>
+      <div class="feat"><span class="feat-dot cyan"></span><span id="feat3">叫貨準確度對比追蹤</span></div>
+      <div class="feat"><span class="feat-dot orange"></span><span id="feat4">料號異常自動偵測</span></div>
+      <div class="feat"><span class="feat-dot green"></span><span id="feat5">安全庫存比例可調整</span></div>
+      <div class="feat"><span class="feat-dot blue"></span><span id="feat6">支援月均 ／ 週數預估</span></div>
     </div>
 
     <div class="notice-bar">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       <div class="notice-items">
-        <span>僅供內部使用</span>
-        <span>資料請妥善保管</span>
+        <span id="notice1">僅供內部使用</span>
+        <span id="notice2">資料請妥善保管</span>
       </div>
     </div>
   </div>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('t1',this)">📊 叫貨分析</button>
-    <button class="tab-btn" onclick="switchTab('t2',this)">📁 EX檔合併</button>
-    <button class="tab-btn" onclick="switchTab('t3',this)">🎯 準確度對比</button>
+    <button class="tab-btn active" onclick="switchTab('t1',this)" data-i18n="tab1">📊 叫貨分析</button>
+    <button class="tab-btn" onclick="switchTab('t2',this)" data-i18n="tab2">📁 EX檔合併</button>
+    <button class="tab-btn" onclick="switchTab('t3',this)" data-i18n="tab3">🎯 準確度對比</button>
+    <button class="tab-btn" onclick="switchTab('t4',this)" data-i18n="tab4">⚙️ 欄位設定</button>
   </div>
 
   <!-- ══ TAB 1 ══ -->
   <div id="t1" class="tab-pane active">
     <div class="card">
-      <div class="card-title">下單 Excel 檔案（可多選多月）</div>
+      <div class="card-title" id="c1t1">下單 Excel 檔案（可多選多月）</div>
       <div class="dz" id="dz1">
         <input type="file" accept=".xlsx,.xls" multiple onchange="handleFiles('orders',this.files)">
         <div class="dz-icon">📂</div>
-        <div class="dz-text">點擊選擇 或 拖曳檔案進來<br><strong>可同時選多個月份</strong>，檔名需含月份（如 202503）</div>
+        <div class="dz-text"><span id="dz1-text">點擊選擇 或 拖曳檔案進來</span><br><strong id="dz1-hint">可同時選多個月份</strong>，檔名需含月份（如 202503）</div>
         <div class="chips" id="orders-chips"></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">對照表與模板</div>
+      <div class="card-title" id="c1t2">對照表與模板</div>
       <div class="frow">
-        <label>客戶對照表</label>
+        <label id="lbl-cust-map">客戶對照表</label>
         <label class="fpick">選擇<input type="file" accept=".xlsx,.xls" onchange="handleSingle('mapping',this)"></label>
-        <span class="fname empty" id="mapping-name">尚未選擇</span>
+        <span class="fname empty" id="mapping-name"><span id="mapping-name-empty">尚未選擇</span></span>
       </div>
       <div class="frow">
-        <label>叫貨模板</label>
+        <label id="lbl-template">叫貨模板</label>
         <label class="fpick">選擇<input type="file" accept=".xlsx,.xls" onchange="handleSingle('template',this)"></label>
-        <span class="fname empty" id="template-name">尚未選擇</span>
+        <span class="fname empty" id="template-name"><span id="template-name-empty">尚未選擇</span></span>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">計算設定</div>
+      <div class="card-title" id="c1t3">計算設定</div>
       <div class="srow">
-        <span class="slbl">安全庫存比例</span>
+        <span class="slbl" id="lbl-safety">安全庫存比例</span>
         <div class="sctl">
           <input type="number" id="safety" value="115" min="100" max="200" step="5">
-          <span class="hint">%　（100＝不加　115＝+15%）</span>
+          <span class="hint" id="hint-safety">%　（100＝不加　115＝+15%）</span>
         </div>
       </div>
       <div class="srow">
-        <span class="slbl">預估週期</span>
+        <span class="slbl" id="lbl-period">預估週期</span>
         <div class="sctl">
           <div class="tgl">
             <button class="tgl-opt on" id="mode-monthly" onclick="setMode('monthly')">月均量</button>
             <button class="tgl-opt" id="mode-weekly" onclick="setMode('weekly')">指定週數</button>
           </div>
           <input type="number" id="weeks" value="4" min="1" max="12" style="display:none">
-          <span class="hint" id="weeks-hint" style="display:none">週</span>
+          <span class="hint" id="hint-weeks" style="display:none">週</span>
         </div>
       </div>
     </div>
     <button class="run-btn green" id="t1-btn" onclick="runAnalysis()">🚀 開始分析，產出 Excel</button>
-    <div class="logbox" id="t1-log">等待執行…</div>
+    <div class="logbox" id="t1-log"><span id="log1-init">等待執行…</span></div>
   </div>
 
   <!-- ══ TAB 2 ══ -->
   <div id="t2" class="tab-pane">
     <div class="ibox">
-      📌 直接丟入對方提供的採購明細 Excel，系統自動讀取 <b>「採購單明細」</b> 分頁<br>
-      產出：<b>① 採購單明細（合併）</b>　＋　<b>② 樞紐統計（品名×數量×金額）</b>
+      <span id="ibox2">直接丟入採購明細 Excel，系統自動讀取資料分頁<br>產出：<b>① 採購單明細（合併）</b>　＋　<b>② 樞紐統計</b></span>
     </div>
     <div class="card">
-      <div class="card-title">採購明細 Excel（全部丟進來）</div>
+      <div class="card-title" id="c2t1">採購明細 Excel（全部丟進來）</div>
       <div class="dz" id="dz2">
         <input type="file" accept=".xlsx,.xls" multiple onchange="handleFiles('ex',this.files)">
         <div class="dz-icon">📁</div>
-        <div class="dz-text">點擊選擇 或 拖曳<br><strong>支援直接丟入對方提供的格式，無需修改</strong></div>
+        <div class="dz-text"><span id="dz2-text">點擊選擇 或 拖曳</span><br><strong id="dz2-hint">支援直接丟入原始格式，無需修改</strong></div>
         <div class="chips" id="ex-chips"></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">設定（格式不同時調整）</div>
+      <div class="card-title" id="c2t2">設定（格式不同時調整）</div>
+
+      <div class="preset-bar">
+        <span class="slbl" style="width:auto;margin-right:6px" id="lbl-preset">記憶設定</span>
+        <div class="preset-slots">
+          <div class="preset-slot" id="pslot-0">
+            <span class="pslot-name" id="pslot-name-0" onclick="loadPreset(0)">空白</span>
+            <button class="pslot-save" onclick="savePreset(0)">💾</button>
+          </div>
+          <div class="preset-slot" id="pslot-1">
+            <span class="pslot-name" id="pslot-name-1" onclick="loadPreset(1)">空白</span>
+            <button class="pslot-save" onclick="savePreset(1)">💾</button>
+          </div>
+          <div class="preset-slot" id="pslot-2">
+            <span class="pslot-name" id="pslot-name-2" onclick="loadPreset(2)">空白</span>
+            <button class="pslot-save" onclick="savePreset(2)">💾</button>
+          </div>
+        </div>
+        <span class="hint" id="hint-preset">點 💾 儲存目前設定，點名字載入</span>
+      </div>
+
       <div class="srow">
-        <span class="slbl">資料分頁名稱</span>
+        <span class="slbl" id="lbl-sheet">資料分頁名稱</span>
         <input type="text" class="wide" id="ex-sheet" value="採購單明細">
-        <span class="hint">（找不到時自動用第一個分頁）</span>
+        <span class="hint" id="hint-sheet">（找不到時自動用第一個分頁）</span>
       </div>
       <div class="srow">
-        <span class="slbl">品名欄位關鍵字</span>
+        <span class="slbl" id="lbl-name-key">品名欄位關鍵字</span>
         <input type="text" class="wide" id="ex-name-key" value="品名">
       </div>
       <div class="srow">
-        <span class="slbl">數量欄位關鍵字</span>
+        <span class="slbl" id="lbl-qty-key">數量欄位關鍵字</span>
         <input type="text" class="wide" id="ex-qty-key" value="數量">
       </div>
     </div>
     <button class="run-btn purple" id="t2-btn" onclick="runMerge()">🔀 開始合併，產出 Excel</button>
-    <div class="logbox" id="t2-log">等待執行…</div>
+    <div class="logbox" id="t2-log"><span id="log2-init">等待執行…</span></div>
   </div>
 
   <!-- ══ TAB 3 ══ -->
   <div id="t3" class="tab-pane">
     <div class="ibox">
-      📌 <b>預估表</b>：本工具產出的「叫貨評估表.xlsx」即可，不需改格式<br>
-      📌 <b>實際訂單</b>：後台直接下載的原始 Excel，<b>不需改任何欄位</b><br>
-      自動比對每個品項：多叫？少叫？準確率幾%？
+      <span id="ibox3"><b>預估表</b>：本工具產出的叫貨評估表.xlsx<br><b>實際訂單</b>：後台直接下載的原始 Excel，<b>不需改任何欄位</b></span>
     </div>
     <div class="card">
-      <div class="card-title">上個月的叫貨評估表</div>
+      <div class="card-title" id="c3t1">上個月的叫貨評估表</div>
       <div class="frow">
-        <label>預估表</label>
+        <label id="lbl-forecast">預估表</label>
         <label class="fpick">選擇<input type="file" accept=".xlsx,.xls" onchange="handleSingle('forecast',this)"></label>
         <span class="fname empty" id="forecast-name">選本工具產出的叫貨評估表.xlsx</span>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">本月實際訂單 ＋ 客戶對照表</div>
+      <div class="card-title" id="c3t2">本月實際訂單 ＋ 客戶對照表</div>
       <div class="dz" id="dz3">
         <input type="file" accept=".xlsx,.xls" multiple onchange="handleFiles('actual',this.files)">
         <div class="dz-icon">📋</div>
-        <div class="dz-text">後台下載的原始下單 Excel（可多選，直接丟進來）</div>
+        <div class="dz-text" id="dz3-text">後台下載的原始下單 Excel（可多選，直接丟進來）</div>
         <div class="chips" id="actual-chips"></div>
       </div>
       <div class="frow" style="margin-top:12px">
-        <label>客戶對照表</label>
+        <label id="lbl-cust-map3">客戶對照表</label>
         <label class="fpick">選擇<input type="file" accept=".xlsx,.xls" onchange="handleSingle('mapping3',this)"></label>
         <span class="fname empty" id="mapping3-name">尚未選擇</span>
       </div>
     </div>
     <button class="run-btn orange" id="t3-btn" onclick="runCompare()">🎯 開始對比，產出 Excel</button>
-    <div class="logbox" id="t3-log">等待執行…</div>
+    <div class="logbox" id="t3-log"><span id="log3-init">等待執行…</span></div>
   </div>
 </div>
+
+  <!-- ══ TAB 4: SETTINGS ══ -->
+  <div id="t4" class="tab-pane">
+    <div class="ibox">
+      <span id="ibox4">⚙️ 設定完成後會<b>自動儲存</b>，下次開啟不用重填。</span>
+
+    <!-- Settings preset slots -->
+    <div class="card">
+      <div class="card-title" id="c4t0">🗂️ <span id="t-c4t0">設定記憶點</span></div>
+      <div class="preset-bar">
+        <span class="slbl" style="width:auto;margin-right:6px" id="lbl-cfg-preset">快速切換</span>
+        <div class="preset-slots">
+          <div class="preset-slot" id="cfgslot-0">
+            <span class="pslot-name" id="cfgslot-name-0" onclick="loadCfgPreset(0)">空白</span>
+            <button class="pslot-save" onclick="saveCfgPreset(0)">💾</button>
+          </div>
+          <div class="preset-slot" id="cfgslot-1">
+            <span class="pslot-name" id="cfgslot-name-1" onclick="loadCfgPreset(1)">空白</span>
+            <button class="pslot-save" onclick="saveCfgPreset(1)">💾</button>
+          </div>
+          <div class="preset-slot" id="cfgslot-2">
+            <span class="pslot-name" id="cfgslot-name-2" onclick="loadCfgPreset(2)">空白</span>
+            <button class="pslot-save" onclick="saveCfgPreset(2)">💾</button>
+          </div>
+        </div>
+        <span class="hint" id="hint-cfg-preset">點 💾 儲存目前欄位設定，點名稱快速載入</span>
+      </div>
+    </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="c4t1">📋 訂單檔案欄位名稱</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.7">
+        <span id="hint-col-desc">填入你的 Excel <b>第一列標題列</b>的欄位名稱，不需完全一致，關鍵字符合即可。</span>
+      </div>
+      <div class="srow"><span class="slbl" id="lbl-col-email">信箱 / 帳號欄</span><input type="text" class="wide" id="cfg-col-email" placeholder="例：信箱、Email、帳號"><span class="hint" id="hint-col-email-note">用來對應客戶類型</span></div>
+      <div class="srow"><span class="slbl" id="lbl-col-sku">料號 / SKU 欄</span><input type="text" class="wide" id="cfg-col-sku" placeholder="例：SKU、品號、料號"></div>
+      <div class="srow"><span class="slbl" id="lbl-col-name">品項名稱欄</span><input type="text" class="wide" id="cfg-col-name" placeholder="例：項目、品名、商品名稱"></div>
+      <div class="srow"><span class="slbl" id="lbl-col-qty">數量欄</span><input type="text" class="wide" id="cfg-col-qty" placeholder="例：數量、訂購數量、Qty"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="c4t2">👥 客戶對照表欄位名稱</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.7">
+        <span id="hint-map-desc">客戶對照表需包含：<b>信箱</b>（用來比對訂單）、<b>客戶名稱</b>、<b>通路類型</b>（用來區分兩種客群）。</span>
+      </div>
+      <div class="srow"><span class="slbl" id="lbl-map-email">信箱 / 帳號欄</span><input type="text" class="wide" id="cfg-map-email" placeholder="例：信箱、Email"></div>
+      <div class="srow"><span class="slbl" id="lbl-map-cust">客戶名稱欄</span><input type="text" class="wide" id="cfg-map-cust" placeholder="例：客戶、客戶名稱、Company"></div>
+      <div class="srow"><span class="slbl" id="lbl-map-type">通路類型欄</span><input type="text" class="wide" id="cfg-map-type" placeholder="例：經銷/實體、通路類型、Type"></div>
+      <div class="srow"><span class="slbl" id="lbl-type-dealer">經銷商 識別值</span><input type="text" class="wide" id="cfg-type-dealer" placeholder="例：經銷商、Dealer、B2B"><span class="hint" id="hint-dealer">此欄位填的值代表「經銷商」</span></div>
+      <div class="srow"><span class="slbl" id="lbl-type-retail">實體店 識別值</span><input type="text" class="wide" id="cfg-type-retail" placeholder="例：實體店、Retail、直營"><span class="hint" id="hint-retail">此欄位填的值代表「實體店」</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="c4t3">📄 叫貨模板欄位名稱</div>
+      <div class="srow"><span class="slbl" id="lbl-tmpl-sku">料號欄</span><input type="text" class="wide" id="cfg-tmpl-sku" placeholder="例：內部編號、品號、SKU"></div>
+      <div class="srow"><span class="slbl" id="lbl-tmpl-name">品名欄</span><input type="text" class="wide" id="cfg-tmpl-name" placeholder="例：名稱、品名、商品名稱"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="c4t4">🔀 料號對應表（選填）</div>
+      <div class="ibox" style="margin-bottom:10px">
+        <span id="ibox4b">上傳一份 Excel，<b>第一欄</b>填原始料號，<b>第二欄</b>填對應的正確料號。</span>
+      </div>
+      <div class="frow">
+        <label id="lbl-skumap">料號對應表</label>
+        <label class="fpick">選擇<input type="file" accept=".xlsx,.xls,.csv" onchange="handleSingle('skumap',this)"></label>
+        <span class="fname empty" id="skumap-name">尚未選擇（選填）</span>
+      </div>
+    </div>
+
+    <button class="run-btn" id="t4-run" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff" onclick="saveCfg()">💾 儲存設定</button>
+    <div class="logbox" id="t4-log">設定會自動儲存到瀏覽器，重新開啟此頁面時自動帶入。</div>
+  </div>
 
 <!-- ── FOOTER ── -->
 <div style="position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 20px 32px">
@@ -346,9 +535,9 @@ input.wide{width:160px;text-align:left}
       ORDER FORECAST SYSTEM · <span id="ft-ver"></span> · <span id="ft-date"></span>
     </div>
     <div style="display:flex;gap:16px">
-      <span style="font-size:11px;color:#2a3d5a">僅供內部使用</span>
+      <span style="font-size:11px;color:#2a3d5a" id="ft-notice1">僅供內部使用</span>
       <span style="font-size:11px;color:#2a3d5a">·</span>
-      <span style="font-size:11px;color:#2a3d5a">資料請妥善保管</span>
+      <span style="font-size:11px;color:#2a3d5a" id="ft-notice2">資料請妥善保管</span>
       <span style="font-size:11px;color:#2a3d5a">·</span>
       <span style="font-size:11px;color:#2a3d5a">Created by <span id="ft-author"></span></span>
     </div>
@@ -359,10 +548,13 @@ input.wide{width:160px;text-align:left}
 // ══════════════════════════════════════════════════════════════
 //  ✏️  設定區 — 改版本、日期、創造者只需改這裡
 // ══════════════════════════════════════════════════════════════
-const APP_VERSION = 'v1.3';
-const APP_DATE    = '2026.02';
+const APP_VERSION = 'v1.1';
+const APP_DATE    = '2026.03';
 const APP_AUTHOR  = 'Hugo';
-const APP_EMAIL   = 'ys98300812a@email.com'; // 點名字時寄信用
+const APP_EMAIL   = 'ys98300812a@gmail.com';
+
+let currentLang = 'zh-TW';
+let currentTheme = 'dark';
 
 // Auto-fill version info into DOM
 document.addEventListener('DOMContentLoaded',()=>{
@@ -374,10 +566,540 @@ document.addEventListener('DOMContentLoaded',()=>{
   set('ft-ver',    APP_VERSION);
   set('ft-date',   APP_DATE);
   set('ft-author', `<a href="mailto:${APP_EMAIL}" style="color:inherit;text-decoration:underline;text-underline-offset:3px">${APP_AUTHOR}</a>`);
+  loadCfg();
+  renderCfgPresets();
+  // Restore theme
+  try{
+    const savedTheme=localStorage.getItem('oft_theme');
+    if(savedTheme){ currentTheme=savedTheme; document.documentElement.setAttribute('data-theme',savedTheme==='light'?'light':''); const tb=document.getElementById('theme-btn'); if(tb) tb.textContent=savedTheme==='dark'?'🌙':'☀️'; }
+    const savedLang=localStorage.getItem('oft_lang');
+    if(savedLang) currentLang=savedLang;
+  }catch(e){}
+  setLang(currentLang);
 });
 
+// ══════════════════════════════════════════════════════════════
+//  ⚙️  CONFIG — loaded from localStorage, editable in Tab 4
+// ══════════════════════════════════════════════════════════════
+const CFG_KEY = 'orderForecastCfg_v1';
+let CFG = {
+  // Order file columns
+  colEmail:  '信箱',
+  colSku:    'SKU',
+  colName:   '項目',
+  colQty:    '數量',
+  // Customer mapping columns
+  mapEmail:  '信箱',
+  mapCust:   '客戶',
+  mapType:   '經銷/實體',
+  typeDealer:'經銷商',
+  typeRetail:'實體店',
+  // Template columns
+  tmplSku:   '內部編號',
+  tmplName:  '名稱',
+};
+
+function loadCfg(){
+  try{
+    const saved=localStorage.getItem(CFG_KEY);
+    if(saved) Object.assign(CFG,JSON.parse(saved));
+  }catch(e){}
+  // Fill inputs
+  Object.entries({
+    'cfg-col-email': CFG.colEmail,
+    'cfg-col-sku':   CFG.colSku,
+    'cfg-col-name':  CFG.colName,
+    'cfg-col-qty':   CFG.colQty,
+    'cfg-map-email': CFG.mapEmail,
+    'cfg-map-cust':  CFG.mapCust,
+    'cfg-map-type':  CFG.mapType,
+    'cfg-type-dealer':CFG.typeDealer,
+    'cfg-type-retail':CFG.typeRetail,
+    'cfg-tmpl-sku':  CFG.tmplSku,
+    'cfg-tmpl-name': CFG.tmplName,
+  }).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.value=val;});
+}
+
+function saveCfg(silent=false){
+  CFG.colEmail   = document.getElementById('cfg-col-email').value.trim()  || '信箱';
+  CFG.colSku     = document.getElementById('cfg-col-sku').value.trim()    || 'SKU';
+  CFG.colName    = document.getElementById('cfg-col-name').value.trim()   || '項目';
+  CFG.colQty     = document.getElementById('cfg-col-qty').value.trim()    || '數量';
+  CFG.mapEmail   = document.getElementById('cfg-map-email').value.trim()  || '信箱';
+  CFG.mapCust    = document.getElementById('cfg-map-cust').value.trim()   || '客戶';
+  CFG.mapType    = document.getElementById('cfg-map-type').value.trim()   || '經銷/實體';
+  CFG.typeDealer = document.getElementById('cfg-type-dealer').value.trim()|| '經銷商';
+  CFG.typeRetail = document.getElementById('cfg-type-retail').value.trim()|| '實體店';
+  CFG.tmplSku    = document.getElementById('cfg-tmpl-sku').value.trim()   || '內部編號';
+  CFG.tmplName   = document.getElementById('cfg-tmpl-name').value.trim()  || '名稱';
+  try{localStorage.setItem(CFG_KEY,JSON.stringify(CFG));}catch(e){}
+  if(!silent) log('t4-log','✅ 設定已儲存！','ok');
+  // Reload skumap if uploaded
+  if(!silent && S.skumap) loadSkuMap(S.skumap);
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  🌐 LANGUAGE PACK
+// ══════════════════════════════════════════════════════════════
+const LANGS = {
+  'zh-TW': {
+    tab1:'📊 叫貨分析', tab2:'📁 EX檔合併', tab3:'🎯 準確度對比', tab4:'⚙️ 欄位設定',
+    heroTitle:'叫貨評估工具',
+    heroSub:'自動化叫貨分析平台 —— 整合訂單歷史・採購明細・準確度追蹤',
+    heroSub2:'雙擊 HTML 即可使用，無需安裝任何軟體',
+    feat1:'叫貨分析 ＋ 建議叫貨量', feat2:'採購明細合併統計', feat3:'叫貨準確度對比追蹤',
+    feat4:'料號異常自動偵測', feat5:'安全庫存比例可調整', feat6:'支援月均 ／ 週數預估',
+    notice1:'僅供內部使用', notice2:'資料請妥善保管',
+    // Tab1
+    c1t1:'下單 Excel 檔案（可多選多月）',
+    dz1:'點擊選擇 或 拖曳檔案進來', dz1b:'可同時選多個月份，檔名需含月份（如 202503）',
+    c1t2:'對照表與模板',
+    lbl_cust_map:'客戶對照表', lbl_template:'叫貨模板', lbl_not_sel:'尚未選擇',
+    c1t3:'計算設定',
+    lbl_safety:'安全庫存比例', hint_safety:'%　（100＝不加　115＝+15%）',
+    lbl_period:'預估週期', btn_monthly:'月均量', btn_weekly:'指定週數', hint_weeks:'週',
+    btn_run1:'🚀 開始分析，產出 Excel', btn_running:'⏳ 分析中…',
+    // Tab2
+    ibox2:'直接丟入採購明細 Excel，系統自動讀取資料分頁<br>產出：<b>① 採購單明細（合併）</b>　＋　<b>② 樞紐統計</b>',
+    c2t1:'採購明細 Excel（全部丟進來）',
+    dz2:'點擊選擇 或 拖曳', dz2b:'支援直接丟入原始格式，無需修改',
+    c2t2:'設定（格式不同時調整）',
+    lbl_sheet:'資料分頁名稱', lbl_name_key:'品名欄位關鍵字', lbl_qty_key:'數量欄位關鍵字',
+    hint_sheet:'找不到時自動用第一個分頁',
+    btn_run2:'🔀 開始合併，產出 Excel', btn_run2ing:'⏳ 合併中…',
+    // Tab3
+    ibox3:'<b>預估表</b>：本工具產出的叫貨評估表.xlsx<br><b>實際訂單</b>：後台直接下載的原始 Excel，<b>不需改任何欄位</b>',
+    c3t1:'上個月的叫貨評估表',
+    lbl_forecast:'預估表', hint_forecast:'選本工具產出的叫貨評估表.xlsx',
+    c3t2:'本月實際訂單 ＋ 客戶對照表',
+    dz3:'後台下載的原始下單 Excel（可多選，直接丟進來）',
+    lbl_cust_map3:'客戶對照表',
+    btn_run3:'🎯 開始對比，產出 Excel', btn_run3ing:'⏳ 分析中…',
+    // Tab4
+    ibox4:'⚙️ 設定完成後會<b>自動儲存</b>，下次開啟不用重填。',
+    c4t1:'📋 訂單檔案欄位名稱',
+    lbl_col_email:'信箱 / 帳號欄', lbl_col_sku:'料號 / SKU 欄',
+    lbl_col_name:'品項名稱欄', lbl_col_qty:'數量欄',
+    c4t2:'👥 客戶對照表欄位名稱',
+    lbl_map_email:'信箱 / 帳號欄', lbl_map_cust:'客戶名稱欄',
+    lbl_map_type:'通路類型欄', lbl_type_dealer:'經銷商 識別值', lbl_type_retail:'實體店 識別值',
+    hint_dealer:'此欄位填的值代表「經銷商」', hint_retail:'此欄位填的值代表「實體店」',
+    c4t3:'📄 叫貨模板欄位名稱',
+    lbl_tmpl_sku:'料號欄', lbl_tmpl_name:'品名欄',
+    c4t4:'🔀 料號對應表（選填）',
+    ibox4b:'上傳一份 Excel，<b>第一欄</b>填原始料號，<b>第二欄</b>填對應的正確料號。',
+    lbl_skumap:'料號對應表', hint_skumap:'尚未選擇（選填）',
+    btn_save_cfg:'💾 儲存設定',
+    log_waiting:'等待執行…',
+    log_cfg_init:'設定會自動儲存到瀏覽器，重新開啟此頁面時自動帶入。',
+    c4t0:'🗂️ 設定記憶點',
+    lbl_cfg_preset:'快速切換',
+    hint_cfg_preset:'點 💾 儲存目前欄位設定，點名稱快速載入',
+    hint_col_desc:'填入你的 Excel <b>第一列標題列</b>的欄位名稱，不需完全一致，關鍵字符合即可。',
+    hint_col_email_note:'用來對應客戶類型',
+    hint_map_desc:'客戶對照表需包含：<b>信箱</b>（用來比對訂單）、<b>客戶名稱</b>、<b>通路類型</b>（用來區分兩種客群）。',
+    preset_empty:'空白',
+    preset_prompt:'為這組設定命名（第 {n} 格）：',
+    preset_saved:'已儲存欄位設定',
+    preset_loaded:'已載入設定',
+    // Excel sheet names
+    ws_retail:'實體店面', ws_trend:'📈 趨勢分析', ws_top10:'🏆 Top 10 熱銷品項',
+    xl_sku:'料號',
+    xl_name:'品名',
+    xl_trend:'整體趨勢',
+    xl_latest:'最新月對比',
+    xl_rank:'排名',
+    xl_avg:'月平均',
+    xl_sug:'建議叫貨',
+    xl_total:'合計',
+    xl_legend:'色彩說明：',
+    xl_combined:'▌ 合計 Combined Top 10',
+    xl_trend_sub:'　— 月份銷售熱力圖',
+    xl_top10_sub:'　— 依建議叫貨量排序',
+    tr_up3:'📈 大幅成長',
+    tr_up2:'↗ 成長',
+    tr_up1:'↗ 微增',
+    tr_flat:'→ 持平',
+    tr_dn1:'↘ 微降',
+    tr_dn2:'▼ 下降',
+    tr_dn3:'📉 大幅下降',
+    tr_na:'—',
+    lg_up3:'▲▲ 大幅成長 ≥30%',
+    lg_up2:'▲ 成長 10-29%',
+    lg_up1:'↗ 微增 0-9%',
+    lg_flat:'→ 持平 ±10%',
+    lg_dn1:'↘ 微降 10-29%',
+    lg_dn2:'▼ 下降 30-49%',
+    lg_dn3:'▼▼ 大幅下降 ≥50%',
+    ws_detail:'各客戶品項明細', ws_issue:'⚠️ 品項異常警告',
+    ws_po:'採購單明細', ws_pivot:'樞紐統計', ws_compare:'叫貨準確度對比',
+  },
+  'zh-CN': {
+    tab1:'📊 叫货分析', tab2:'📁 EX文件合并', tab3:'🎯 准确度对比', tab4:'⚙️ 字段设置',
+    heroTitle:'叫货评估工具',
+    heroSub:'自动化叫货分析平台 —— 整合订单历史・采购明细・准确度追踪',
+    heroSub2:'双击 HTML 即可使用，无需安装任何软件',
+    feat1:'叫货分析 ＋ 建议叫货量', feat2:'采购明细合并统计', feat3:'叫货准确度对比追踪',
+    feat4:'料号异常自动检测', feat5:'安全库存比例可调整', feat6:'支持月均 ／ 周数预估',
+    notice1:'仅供内部使用', notice2:'数据请妥善保管',
+    c1t1:'下单 Excel 文件（可多选多月）',
+    dz1:'点击选择 或 拖拽文件进来', dz1b:'可同时选多个月份，文件名需含月份（如 202503）',
+    c1t2:'对照表与模板',
+    lbl_cust_map:'客户对照表', lbl_template:'叫货模板', lbl_not_sel:'尚未选择',
+    c1t3:'计算设置',
+    lbl_safety:'安全库存比例', hint_safety:'%　（100＝不加　115＝+15%）',
+    lbl_period:'预估周期', btn_monthly:'月均量', btn_weekly:'指定周数', hint_weeks:'周',
+    btn_run1:'🚀 开始分析，生成 Excel', btn_running:'⏳ 分析中…',
+    ibox2:'直接放入采购明细 Excel，系统自动读取数据分页<br>输出：<b>① 采购单明细（合并）</b>　＋　<b>② 透视统计</b>',
+    c2t1:'采购明细 Excel（全部放进来）',
+    dz2:'点击选择 或 拖拽', dz2b:'支持直接放入原始格式，无需修改',
+    c2t2:'设置（格式不同时调整）',
+    lbl_sheet:'数据分页名称', lbl_name_key:'品名字段关键字', lbl_qty_key:'数量字段关键字',
+    hint_sheet:'找不到时自动用第一个分页',
+    btn_run2:'🔀 开始合并，生成 Excel', btn_run2ing:'⏳ 合并中…',
+    ibox3:'<b>预估表</b>：本工具生成的叫货评估表.xlsx<br><b>实际订单</b>：后台直接下载的原始 Excel，<b>不需改任何字段</b>',
+    c3t1:'上个月的叫货评估表',
+    lbl_forecast:'预估表', hint_forecast:'选本工具生成的叫货评估表.xlsx',
+    c3t2:'本月实际订单 ＋ 客户对照表',
+    dz3:'后台下载的原始下单 Excel（可多选，直接放进来）',
+    lbl_cust_map3:'客户对照表',
+    btn_run3:'🎯 开始对比，生成 Excel', btn_run3ing:'⏳ 分析中…',
+    ibox4:'⚙️ 设置完成后会<b>自动保存</b>，下次打开不用重填。',
+    c4t1:'📋 订单文件字段名称',
+    lbl_col_email:'邮箱 / 账号栏', lbl_col_sku:'料号 / SKU 栏',
+    lbl_col_name:'品项名称栏', lbl_col_qty:'数量栏',
+    c4t2:'👥 客户对照表字段名称',
+    lbl_map_email:'邮箱 / 账号栏', lbl_map_cust:'客户名称栏',
+    lbl_map_type:'渠道类型栏', lbl_type_dealer:'经销商 识别值', lbl_type_retail:'零售店 识别值',
+    hint_dealer:'此字段填的值代表「经销商」', hint_retail:'此字段填的值代表「零售店」',
+    c4t3:'📄 叫货模板字段名称',
+    lbl_tmpl_sku:'料号栏', lbl_tmpl_name:'品名栏',
+    c4t4:'🔀 料号对应表（选填）',
+    ibox4b:'上传一份 Excel，<b>第一列</b>填原始料号，<b>第二列</b>填对应的正确料号。',
+    lbl_skumap:'料号对应表', hint_skumap:'尚未选择（选填）',
+    btn_save_cfg:'💾 保存设置',
+    log_waiting:'等待执行…',
+    log_cfg_init:'设置会自动保存到浏览器，重新打开此页面时自动带入。',
+    c4t0:'🗂️ 设置记忆点',
+    lbl_cfg_preset:'快速切换',
+    hint_cfg_preset:'点 💾 保存当前字段设置，点名称快速载入',
+    hint_col_desc:'填入你的 Excel <b>第一行标题行</b>的字段名称，不需完全一致，关键字符合即可。',
+    hint_col_email_note:'用来对应客户类型',
+    hint_map_desc:'客户对照表需包含：<b>邮箱</b>（用来比对订单）、<b>客户名称</b>、<b>渠道类型</b>（用来区分两种客群）。',
+    preset_empty:'空白',
+    ws_retail:'零售门店', ws_trend:'📈 趋势分析', ws_top10:'🏆 Top 10 热销品项',
+    xl_sku:'料号',
+    xl_name:'品名',
+    xl_trend:'整体趋势',
+    xl_latest:'最新月对比',
+    xl_rank:'排名',
+    xl_avg:'月均量',
+    xl_sug:'建议叫货',
+    xl_total:'合计',
+    xl_legend:'颜色说明：',
+    xl_combined:'▌ 合计 Combined Top 10',
+    xl_trend_sub:'　— 月份销售热力图',
+    xl_top10_sub:'　— 依建议叫货量排序',
+    tr_up3:'📈 大幅增长',
+    tr_up2:'↗ 增长',
+    tr_up1:'↗ 微增',
+    tr_flat:'→ 持平',
+    tr_dn1:'↘ 微降',
+    tr_dn2:'▼ 下降',
+    tr_dn3:'📉 大幅下降',
+    tr_na:'—',
+    lg_up3:'▲▲ 大幅增长 ≥30%',
+    lg_up2:'▲ 增长 10-29%',
+    lg_up1:'↗ 微增 0-9%',
+    lg_flat:'→ 持平 ±10%',
+    lg_dn1:'↘ 微降 10-29%',
+    lg_dn2:'▼ 下降 30-49%',
+    lg_dn3:'▼▼ 大幅下降 ≥50%',
+    ws_detail:'各客户品项明细', ws_issue:'⚠️ 品项异常警告',
+    ws_po:'采购单明细', ws_pivot:'透视统计', ws_compare:'叫货准确度对比',
+  },
+  'en': {
+    tab1:'📊 Order Analysis', tab2:'📁 Merge PO Files', tab3:'🎯 Accuracy Report', tab4:'⚙️ Settings',
+    heroTitle:'Order Forecast Tool',
+    heroSub:'Automated Order Forecasting Platform — integrates order history, PO details & accuracy tracking',
+    heroSub2:'Open the HTML file directly — no installation required',
+    feat1:'Order Analysis + Suggested Qty', feat2:'PO File Merge & Pivot', feat3:'Forecast Accuracy Tracking',
+    feat4:'SKU Anomaly Detection', feat5:'Adjustable Safety Stock %', feat6:'Monthly Avg / Week-based Forecast',
+    notice1:'Internal Use Only', notice2:'Handle Data Responsibly',
+    c1t1:'Order Excel Files (multi-select, multi-month)',
+    dz1:'Click to select or drag & drop files', dz1b:'Select multiple months at once — filename must contain month (e.g. 202503)',
+    c1t2:'Mapping Table & Template',
+    lbl_cust_map:'Customer Map', lbl_template:'Order Template', lbl_not_sel:'Not selected',
+    c1t3:'Calculation Settings',
+    lbl_safety:'Safety Stock Ratio', hint_safety:'%　（100 = none, 115 = +15%）',
+    lbl_period:'Forecast Period', btn_monthly:'Monthly Avg', btn_weekly:'By Weeks', hint_weeks:'wks',
+    btn_run1:'🚀 Run Analysis & Export Excel', btn_running:'⏳ Analyzing…',
+    ibox2:'Drop in your PO Excel files — system auto-detects the data sheet<br>Output: <b>① Merged PO Detail</b> + <b>② Pivot Summary</b>',
+    c2t1:'PO Excel Files (drop all files here)',
+    dz2:'Click to select or drag & drop', dz2b:'Original format supported — no pre-formatting needed',
+    c2t2:'Settings (adjust if format differs)',
+    lbl_sheet:'Data Sheet Name', lbl_name_key:'Product Name Column Keyword', lbl_qty_key:'Quantity Column Keyword',
+    hint_sheet:'Falls back to first sheet if not found',
+    btn_run2:'🔀 Merge & Export Excel', btn_run2ing:'⏳ Merging…',
+    ibox3:'<b>Forecast file</b>: the Excel exported by this tool<br><b>Actual orders</b>: raw download from your platform — <b>no pre-formatting needed</b>',
+    c3t1:'Last Month\'s Forecast File',
+    lbl_forecast:'Forecast File', hint_forecast:'Select the Excel exported by this tool',
+    c3t2:'This Month\'s Actual Orders + Customer Map',
+    dz3:'Raw order Excel downloaded from your platform (multi-select, drop here)',
+    lbl_cust_map3:'Customer Map',
+    btn_run3:'🎯 Compare & Export Excel', btn_run3ing:'⏳ Analyzing…',
+    ibox4:'⚙️ Settings are <b>auto-saved</b> to your browser and restored next time.',
+    c4t1:'📋 Order File Column Names',
+    lbl_col_email:'Email / Account Col', lbl_col_sku:'SKU / Item No. Col',
+    lbl_col_name:'Product Name Col', lbl_col_qty:'Quantity Col',
+    c4t2:'👥 Customer Mapping Column Names',
+    lbl_map_email:'Email / Account Col', lbl_map_cust:'Customer Name Col',
+    lbl_map_type:'Channel Type Col', lbl_type_dealer:'Dealer Identifier', lbl_type_retail:'Retail Identifier',
+    hint_dealer:'The value in this column that means "Dealer"', hint_retail:'The value in this column that means "Retail"',
+    c4t3:'📄 Order Template Column Names',
+    lbl_tmpl_sku:'Item No. Column', lbl_tmpl_name:'Product Name Column',
+    c4t4:'🔀 SKU Mapping Table (optional)',
+    ibox4b:'Upload an Excel with <b>Column A</b> = original SKU and <b>Column B</b> = mapped SKU.',
+    lbl_skumap:'SKU Map', hint_skumap:'Not selected (optional)',
+    btn_save_cfg:'💾 Save Settings',
+    log_waiting:'Waiting to run…',
+    log_cfg_init:'Settings are auto-saved to your browser and restored on next open.',
+    c4t0:'🗂️ Setting Presets',
+    lbl_cfg_preset:'Quick Switch',
+    hint_cfg_preset:'Click 💾 to save current settings, click name to load',
+    hint_col_desc:'Enter the <b>header row column names</b> from your Excel file. Partial keyword match is fine.',
+    hint_col_email_note:'Used to match customer type',
+    hint_map_desc:'Customer map needs: <b>Email</b> (to match orders), <b>Customer Name</b>, <b>Channel Type</b> (to classify customer groups).',
+    preset_empty:'Empty',
+    ws_retail:'Retail', ws_trend:'📈 Trend Analysis', ws_top10:'🏆 Top 10 Items',
+    xl_sku:'SKU',
+    xl_name:'Product Name',
+    xl_trend:'Overall Trend',
+    xl_latest:'Latest vs Prev',
+    xl_rank:'Rank',
+    xl_avg:'Monthly Avg',
+    xl_sug:'Suggested Qty',
+    xl_total:'Total',
+    xl_legend:'Color Legend:',
+    xl_combined:'▌ Combined Top 10',
+    xl_trend_sub:' — Monthly Sales Heatmap',
+    xl_top10_sub:' — Sorted by Suggested Qty',
+    tr_up3:'📈 Strong Growth',
+    tr_up2:'↗ Growth',
+    tr_up1:'↗ Slight Up',
+    tr_flat:'→ Stable',
+    tr_dn1:'↘ Slight Down',
+    tr_dn2:'▼ Decline',
+    tr_dn3:'📉 Sharp Decline',
+    tr_na:'—',
+    lg_up3:'▲▲ Strong Growth ≥30%',
+    lg_up2:'▲ Growth 10-29%',
+    lg_up1:'↗ Slight Up 0-9%',
+    lg_flat:'→ Stable ±10%',
+    lg_dn1:'↘ Slight Down 10-29%',
+    lg_dn2:'▼ Decline 30-49%',
+    lg_dn3:'▼▼ Sharp Decline ≥50%',
+    ws_detail:'Customer Item Detail', ws_issue:'⚠️ SKU Anomalies',
+    ws_po:'PO Detail', ws_pivot:'Pivot Summary', ws_compare:'Forecast vs Actual',
+  },
+  'ja': {
+    tab1:'📊 発注分析', tab2:'📁 EXファイル統合', tab3:'🎯 精度レポート', tab4:'⚙️ 設定',
+    heroTitle:'発注評価ツール',
+    heroSub:'自動化発注分析プラットフォーム — 注文履歴・仕入明細・精度追跡を一元管理',
+    heroSub2:'HTMLファイルをダブルクリックするだけ — インストール不要',
+    feat1:'発注分析 ＋ 推奨発注量', feat2:'仕入明細の統合・集計', feat3:'発注精度追跡',
+    feat4:'品番異常自動検出', feat5:'安全在庫率の調整可能', feat6:'月平均 ／ 週数ベース予測',
+    notice1:'社内限定', notice2:'データの取り扱いに注意',
+    c1t1:'注文 Excel ファイル（複数月選択可）',
+    dz1:'クリックまたはドラッグ＆ドロップ', dz1b:'複数月を同時選択可 — ファイル名に年月を含めること（例：202503）',
+    c1t2:'対照表とテンプレート',
+    lbl_cust_map:'顧客対照表', lbl_template:'発注テンプレート', lbl_not_sel:'未選択',
+    c1t3:'計算設定',
+    lbl_safety:'安全在庫率', hint_safety:'%　（100＝なし、115＝+15%）',
+    lbl_period:'予測期間', btn_monthly:'月平均', btn_weekly:'週数指定', hint_weeks:'週',
+    btn_run1:'🚀 分析開始・Excel出力', btn_running:'⏳ 分析中…',
+    ibox2:'仕入明細 Excel をそのまま投入 — システムが自動でデータシートを検出<br>出力：<b>① 統合明細</b>　＋　<b>② ピボット集計</b>',
+    c2t1:'仕入明細 Excel（すべてドロップ）',
+    dz2:'クリックまたはドラッグ＆ドロップ', dz2b:'原本フォーマットのまま投入可',
+    c2t2:'設定（フォーマットが異なる場合）',
+    lbl_sheet:'データシート名', lbl_name_key:'商品名列キーワード', lbl_qty_key:'数量列キーワード',
+    hint_sheet:'見つからない場合は最初のシートを使用',
+    btn_run2:'🔀 統合・Excel出力', btn_run2ing:'⏳ 統合中…',
+    ibox3:'<b>予測ファイル</b>：このツールが出力したExcel<br><b>実績データ</b>：バックエンドから直接ダウンロードした原本 — <b>加工不要</b>',
+    c3t1:'先月の発注評価表',
+    lbl_forecast:'予測ファイル', hint_forecast:'このツールが出力したExcelを選択',
+    c3t2:'今月の実績注文 ＋ 顧客対照表',
+    dz3:'バックエンドからダウンロードした注文Excel（複数選択可）',
+    lbl_cust_map3:'顧客対照表',
+    btn_run3:'🎯 比較・Excel出力', btn_run3ing:'⏳ 分析中…',
+    ibox4:'⚙️ 設定は<b>自動保存</b>され、次回起動時に自動復元されます。',
+    c4t1:'📋 注文ファイル列名',
+    lbl_col_email:'メール / アカウント列', lbl_col_sku:'品番 / SKU 列',
+    lbl_col_name:'商品名列', lbl_col_qty:'数量列',
+    c4t2:'👥 顧客対照表の列名',
+    lbl_map_email:'メール / アカウント列', lbl_map_cust:'顧客名列',
+    lbl_map_type:'チャネル区分列', lbl_type_dealer:'販売店 識別値', lbl_type_retail:'直営店 識別値',
+    hint_dealer:'この列で「販売店」を示す値', hint_retail:'この列で「直営店」を示す値',
+    c4t3:'📄 発注テンプレートの列名',
+    lbl_tmpl_sku:'品番列', lbl_tmpl_name:'商品名列',
+    c4t4:'🔀 品番対応表（任意）',
+    ibox4b:'Excelをアップロード。<b>A列</b>に元の品番、<b>B列</b>に変換後の品番を入力。',
+    lbl_skumap:'品番対応表', hint_skumap:'未選択（任意）',
+    btn_save_cfg:'💾 設定を保存',
+    log_waiting:'実行待機中…',
+    log_cfg_init:'設定はブラウザに自動保存され、次回起動時に自動復元されます。',
+    c4t0:'🗂️ 設定プリセット',
+    lbl_cfg_preset:'クイック切替',
+    hint_cfg_preset:'💾 で現在の設定を保存、名前をクリックして読込',
+    hint_col_desc:'Excelの<b>ヘッダー行の列名</b>を入力してください。部分一致でOKです。',
+    hint_col_email_note:'顧客タイプの照合に使用',
+    hint_map_desc:'顧客対照表には<b>メール</b>（注文照合用）、<b>顧客名</b>、<b>チャネル区分</b>が必要です。',
+    preset_empty:'空白',
+    ws_retail:'直営店', ws_trend:'📈 トレンド分析', ws_top10:'🏆 Top 10 商品',
+    xl_sku:'品番',
+    xl_name:'品名',
+    xl_trend:'全体トレンド',
+    xl_latest:'直近月比較',
+    xl_rank:'順位',
+    xl_avg:'月平均',
+    xl_sug:'推奨発注数',
+    xl_total:'合計',
+    xl_legend:'色の説明：',
+    xl_combined:'▌ 合計 Combined Top 10',
+    xl_trend_sub:'　— 月別販売ヒートマップ',
+    xl_top10_sub:'　— 推奨発注数順',
+    tr_up3:'📈 急成長',
+    tr_up2:'↗ 成長',
+    tr_up1:'↗ 微増',
+    tr_flat:'→ 横ばい',
+    tr_dn1:'↘ 微減',
+    tr_dn2:'▼ 減少',
+    tr_dn3:'📉 急減',
+    tr_na:'—',
+    lg_up3:'▲▲ 急成長 ≥30%',
+    lg_up2:'▲ 成長 10-29%',
+    lg_up1:'↗ 微増 0-9%',
+    lg_flat:'→ 横ばい ±10%',
+    lg_dn1:'↘ 微減 10-29%',
+    lg_dn2:'▼ 減少 30-49%',
+    lg_dn3:'▼▼ 急減 ≥50%',
+    ws_detail:'顧客品目明細', ws_issue:'⚠️ 品番異常警告',
+    ws_po:'仕入明細', ws_pivot:'ピボット集計', ws_compare:'予測vs実績',
+  },
+};
+
+function setLang(lang){
+  currentLang = lang;
+  try{ localStorage.setItem('oft_lang', lang); }catch(e){}
+  // Update active btn
+  ['zh-TW','zh-CN','en','ja'].forEach(l=>{
+    const b=document.getElementById('lang-'+l);
+    if(b) b.classList.toggle('active', l===lang);
+  });
+  applyI18n();
+}
+
+function applyI18n(){
+  const T = LANGS[currentLang] || LANGS['zh-TW'];
+  // Helper: set text of element by id
+  const st = (id, key) => { const el=document.getElementById(id); if(el&&T[key]!==undefined) el.innerHTML=T[key]; };
+  const sq = (sel, key) => { document.querySelectorAll('[data-i18n="'+key+'"]').forEach(el=>el.innerHTML=T[key]); };
+
+  // Tab buttons (data-i18n)
+  ['tab1','tab2','tab3','tab4'].forEach(k=>sq('',k));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n'); if(T[k]) el.innerHTML=T[k];
+  });
+
+  // Hero
+  st('hero-title', 'heroTitle');
+  st('hero-sub1', 'heroSub');
+  st('hero-sub2', 'heroSub2');
+  st('feat1','feat1'); st('feat2','feat2'); st('feat3','feat3');
+  st('feat4','feat4'); st('feat5','feat5'); st('feat6','feat6');
+  st('notice1','notice1'); st('notice2','notice2');
+
+  // Tab1
+  st('c1t1','c1t1'); st('dz1-text','dz1'); st('dz1-hint','dz1b');
+  st('c1t2','c1t2'); st('lbl-cust-map','lbl_cust_map'); st('lbl-template','lbl_template');
+  st('mapping-name-empty','lbl_not_sel'); st('template-name-empty','lbl_not_sel');
+  st('c1t3','c1t3'); st('lbl-safety','lbl_safety'); st('hint-safety','hint_safety');
+  st('lbl-period','lbl_period'); st('mode-monthly','btn_monthly'); st('mode-weekly','btn_weekly');
+  st('hint-weeks','hint_weeks');
+  const b1=document.getElementById('t1-btn'); if(b1&&!b1.disabled) b1.textContent=T['btn_run1'];
+
+  // Tab2
+  st('ibox2','ibox2'); st('c2t1','c2t1'); st('dz2-text','dz2'); st('dz2-hint','dz2b');
+  st('c2t2','c2t2'); st('lbl-sheet','lbl_sheet'); st('lbl-name-key','lbl_name_key');
+  st('lbl-qty-key','lbl_qty_key'); st('hint-sheet','hint_sheet');
+  const b2=document.getElementById('t2-btn'); if(b2&&!b2.disabled) b2.textContent=T['btn_run2'];
+
+  // Tab3
+  st('ibox3','ibox3'); st('c3t1','c3t1'); st('lbl-forecast','lbl_forecast');
+  const fn3=document.getElementById('forecast-name'); if(fn3&&fn3.classList.contains('empty')) fn3.textContent=T['hint_forecast'];
+  st('c3t2','c3t2'); st('dz3-text','dz3'); st('lbl-cust-map3','lbl_cust_map3');
+  const m3=document.getElementById('mapping3-name'); if(m3&&m3.classList.contains('empty')) m3.textContent=T['lbl_not_sel'];
+  const b3=document.getElementById('t3-btn'); if(b3&&!b3.disabled) b3.textContent=T['btn_run3'];
+
+  // Tab4
+  st('ibox4','ibox4'); st('c4t1','c4t1'); st('lbl-col-email','lbl_col_email');
+  st('lbl-col-sku','lbl_col_sku'); st('lbl-col-name','lbl_col_name'); st('lbl-col-qty','lbl_col_qty');
+  st('c4t2','c4t2'); st('lbl-map-email','lbl_map_email'); st('lbl-map-cust','lbl_map_cust');
+  st('lbl-map-type','lbl_map_type'); st('lbl-type-dealer','lbl_type_dealer');
+  st('lbl-type-retail','lbl_type_retail'); st('hint-dealer','hint_dealer'); st('hint-retail','hint_retail');
+  st('c4t3','c4t3'); st('lbl-tmpl-sku','lbl_tmpl_sku'); st('lbl-tmpl-name','lbl_tmpl_name');
+  st('c4t4','c4t4'); st('ibox4b','ibox4b'); st('lbl-skumap','lbl_skumap');
+  const sm=document.getElementById('skumap-name'); if(sm&&sm.classList.contains('empty')) sm.textContent=T['hint_skumap'];
+  const b4=document.getElementById('t4-run'); if(b4) b4.textContent=T['btn_save_cfg'];
+
+  // Update log placeholders
+  const l4=document.getElementById('t4-log'); if(l4&&!l4.children.length) l4.textContent=T['log_cfg_init'];
+  // Tab4 preset & description strings
+  st('c4t0','c4t0');
+  st('lbl-cfg-preset','lbl_cfg_preset');
+  st('hint-cfg-preset','hint_cfg_preset');
+  st('hint-col-desc','hint_col_desc');
+  st('hint-col-email-note','hint_col_email_note');
+  st('hint-map-desc','hint_map_desc');
+  // Update "空白" preset placeholders (only if not yet named)
+  const emptyLabel = T['preset_empty']||'空白';
+  ['cfgslot-name-0','cfgslot-name-1','cfgslot-name-2',
+   'pslot-name-0','pslot-name-1','pslot-name-2'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && (el.textContent==='空白'||el.textContent==='Empty'||el.textContent==='空白')) el.textContent=emptyLabel;
+  });
+  // Logbox initial text
+  ['log1-init','log2-init','log3-init'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=T['log_waiting']||'等待執行…'; });
+  // Footer notices
+  st('ft-notice1','notice1'); st('ft-notice2','notice2');
+}
+
+function toggleTheme(){
+  currentTheme = currentTheme==='dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme==='light'?'light':'');
+  const btn=document.getElementById('theme-btn');
+  if(btn) btn.textContent = currentTheme==='dark' ? '🌙' : '☀️';
+  try{ localStorage.setItem('oft_theme', currentTheme); }catch(e){}
+}
+
 // ══ STATE ══════════════════════════════════════════════════
-const S={orders:[],mapping:null,template:null,ex:[],forecast:null,actual:[],mapping3:null,mode:'monthly'};
+const S={orders:[],mapping:null,template:null,ex:[],forecast:null,actual:[],mapping3:null,skumap:null,mode:'monthly'};
+let SKUMAP = {}; // raw sku → normalized sku
+
+async function loadSkuMap(file){
+  try{
+    const wb=await readWb(file);
+    const rows=toArr(wb,wb.SheetNames[0]);
+    SKUMAP={};
+    rows.forEach(r=>{
+      const raw=String(r[0]||'').trim();
+      const mapped=String(r[1]||'').trim();
+      if(raw&&mapped) SKUMAP[raw]=mapped;
+    });
+    log('t4-log',`   ✓ 料號對應表載入：${Object.keys(SKUMAP).length} 筆`,'ok');
+  }catch(e){log('t4-log',`   ⚠️ 料號對應表讀取失敗：${e.message}`,'warn');}
+}
 
 // ══ UI HELPERS ═════════════════════════════════════════════
 function switchTab(id,btn){
@@ -390,7 +1112,7 @@ function setMode(m){
   document.getElementById('mode-monthly').classList.toggle('on',m==='monthly');
   document.getElementById('mode-weekly').classList.toggle('on',m==='weekly');
   document.getElementById('weeks').style.display=m==='weekly'?'block':'none';
-  document.getElementById('weeks-hint').style.display=m==='weekly'?'inline':'none';
+  document.getElementById('hint-weeks').style.display=m==='weekly'?'inline':'none';
 }
 function handleFiles(key,files){
   S[key]=Array.from(files);
@@ -402,6 +1124,7 @@ function handleSingle(key,input){
   S[key]=input.files[0];
   const el=document.getElementById(key+'-name');
   if(el){el.textContent=input.files[0].name;el.classList.remove('empty');}
+  if(key==='skumap') loadSkuMap(input.files[0]);
 }
 function log(id,msg,cls=''){
   const b=document.getElementById(id);
@@ -433,15 +1156,13 @@ function monthFromName(name){
   return d.length>=6?d.slice(0,4)+'-'+d.slice(4,6):name;
 }
 function mLabel(m){const p=m.split('-');return p.length===2?parseInt(p[1])+'月':m;}
-function fixSku(sku,name){
-  sku=String(sku||'').trim(); name=String(name||'');
-  if(sku==='211371~211372') return name.trim().endsWith('120吋')?'211372':'211371';
-  if(sku.includes('211298')&&sku.includes('211413')){
-    if(name.includes('白色')) return '211413';
-    if(name.includes('黑色')) return '211412';
-    return '211298';
-  }
-  return sku.split('~')[0].split('、')[0].trim();
+
+// Generic SKU normalizer: uses SKUMAP lookup, then strips composite separators
+function normSku(sku){
+  sku=String(sku||'').trim();
+  if(SKUMAP[sku]) return SKUMAP[sku];
+  // Strip common composite patterns: take first part before ~、/ etc.
+  return sku.split(/[~、\/,，]/)[0].trim();
 }
 
 // ══ EXCELJS STYLE HELPERS ═══════════════════════════════════
@@ -470,71 +1191,44 @@ async function saveWb(wb,fname){
 }
 
 // ══════════════════════════════════════════════════════════════
-//  DUPLICATE / SIMILAR DETECTION ENGINE
+//  DETECTION ENGINE
 // ══════════════════════════════════════════════════════════════
-// SKUs already handled by fixSku multi-mapping — skip from duplicate check
-const KNOWN_MULTI_SKUS=new Set(['211371','211372','211298','211413','211412','211371~211372']);
-
-// Normalize name for comparison: collapse spaces, normalize unicode to ASCII-like
 function normForCompare(s){
-  return String(s||'')
-    .normalize('NFKC')          // converts 𝐘𝐚𝐛𝐞𝐫 → Yaber, ａ → a, etc.
-    .replace(/\s+/g,'')         // remove all whitespace entirely
-    .toLowerCase();
+  return String(s||'').normalize('NFKC').replace(/\s+/g,'').toLowerCase();
 }
-
 function detectIssues(rows){
-  const issues=[];
-  // sku → Set of NORMALIZED names
-  const skuNormNames={};
-  // sku → first original name (for display)
-  const skuOrigNames={};
-
+  const issues=[], skuNormNames={}, skuOrigNames={};
   rows.forEach(r=>{
-    const sku=String(r.sku||'').trim();
-    const name=String(r.name||'').trim();
+    const sku=String(r.sku||'').trim(), name=String(r.name||'').trim();
     if(!sku||!name) return;
-    if(KNOWN_MULTI_SKUS.has(sku)) return;  // skip already-handled multi-SKUs
-
     const nn=normForCompare(name);
-    if(!skuNormNames[sku]) { skuNormNames[sku]=new Set(); skuOrigNames[sku]=new Set(); }
-    skuNormNames[sku].add(nn);
-    skuOrigNames[sku].add(name);
+    if(!skuNormNames[sku]){skuNormNames[sku]=new Set();skuOrigNames[sku]=new Set();}
+    skuNormNames[sku].add(nn); skuOrigNames[sku].add(name);
   });
-
-  // 1. Same SKU → multiple DISTINCT normalized names
   Object.entries(skuNormNames).forEach(([sku,normSet])=>{
     if(normSet.size>1){
       const origArr=[...skuOrigNames[sku]];
-      issues.push({
-        level:'ERROR', type:'同SKU多品名',
-        sku1:sku, name1:origArr.join(' ／ '), sku2:'', name2:'',
-        detail:`料號「${sku}」對應到 ${normSet.size} 種不同品名，可能是料號對應錯誤或打錯`,
-      });
+      issues.push({level:'ERROR',type:'同SKU多品名',
+        sku1:sku,name1:origArr.join(' ／ '),sku2:'',name2:'',
+        detail:`料號「${sku}」對應到 ${normSet.size} 種不同品名，可能是料號對應錯誤或打錯`});
     }
   });
-
-  // 2. SKU format anomaly — check RAW sku (before fixSku split) for new/unknown composite SKUs
   const rawSkuSeen=new Set();
   rows.forEach(r=>{
     const raw=String(r.rawSku||r.sku||'').trim();
     if(!raw||rawSkuSeen.has(raw)) return;
     rawSkuSeen.add(raw);
-    // Already known multi-SKUs are handled by fixSku — only flag unknown ones
-    if(KNOWN_MULTI_SKUS.has(raw)) return;
+    if(SKUMAP[raw]) return; // known mapping, skip
     if(!/^[A-Za-z0-9\-_]+$/.test(raw)){
-      issues.push({
-        level:'WARN', type:'料號格式異常',
-        sku1:raw, name1:String(r.name||''), sku2:'', name2:'',
-        detail:`料號「${raw}」含有特殊字元（如 ~、、、/ 等），可能是複合料號尚未加入拆分規則，請確認`,
-      });
+      issues.push({level:'WARN',type:'料號格式異常',
+        sku1:raw,name1:String(r.name||''),sku2:'',name2:'',
+        detail:`料號「${raw}」含有特殊字元，可能是複合料號，建議加入料號對應表`});
     }
   });
-
   return issues;
 }
 function writeIssueSheet(ewb,issues,title){
-  const ws=ewb.addWorksheet('⚠️ 品項異常警告');
+  const ws=ewb.addWorksheet(title||(LANGS[currentLang].ws_issue)||'⚠️ 品項異常警告');
   const TC=6;
   ws.mergeCells(1,1,1,TC);
   const tc=ws.getCell(1,1);
@@ -545,17 +1239,16 @@ function writeIssueSheet(ewb,issues,title){
   ws.getRow(1).height=28;
   if(!issues.length){
     ws.mergeCells(3,1,3,TC);
-    sc(ws.getCell(3,1),'✅ 所有 SKU 與品名對應正常，無異常項目',K.GREEN,true,K.GREEN_TXT,11,'center');
+    sc(ws.getCell(3,1),'✅ 所有料號與品名對應正常，無異常項目',K.GREEN,true,K.GREEN_TXT,11,'center');
     ws.getRow(3).height=28;
   } else {
-    ['等級','問題類型','SKU ／ 品名 (A)','SKU ／ 品名 (B)','說明','建議處理'].forEach((h,i)=>{
+    ['等級','問題類型','料號 ／ 品名 (A)','料號 ／ 品名 (B)','說明','建議處理'].forEach((h,i)=>{
       sc(ws.getCell(2,i+1),h,K.HEAD,true,K.WT,10,i>=2?'left':'center');
     });
     ws.getRow(2).height=20;
-    const SUGGEST={'同SKU多品名':'回後台確認料號對應，統一品名','料號格式異常':'確認是否複合料號，如是請在 SKU修正邏輯中補上拆分規則'};
+    const SUGGEST={'同SKU多品名':'回後台確認料號對應，統一品名','料號格式異常':'建議上傳料號對應表處理複合料號'};
     issues.sort((a,b)=>a.level===b.level?0:a.level==='ERROR'?-1:1).forEach((iss,i)=>{
-      const row=i+3;
-      const isErr=iss.level==='ERROR';
+      const row=i+3; const isErr=iss.level==='ERROR';
       const bg=isErr?(i%2?'FFFFF8F8':'FFFCE4D6'):(i%2?'FFFFF9F0':'FFFFF2CC');
       const lvlBg=isErr?'FFFCE4D6':'FFFFF2CC', lvlTxt=isErr?'FFC00000':'FF8B4500';
       ws.getRow(row).height=32;
@@ -591,20 +1284,27 @@ async function runAnalysis(){
     for(const f of S.orders){
       const wb=await readWb(f); const month=monthFromName(f.name);
       toObj(wb,wb.SheetNames[0]).forEach(r=>{
-        allRows.push({sku:fixSku(r['SKU']||'',r['項目']||''),rawSku:String(r['SKU']||'').trim(),name:String(r['項目']||'').trim(),
-          qty:parseFloat(r['數量'])||0,email:String(r['信箱']||'').trim(),month});
+        const rawSku=String(r[CFG.colSku]||'').trim();
+        allRows.push({
+          sku:normSku(rawSku), rawSku,
+          name:String(r[CFG.colName]||'').trim(),
+          qty:parseFloat(r[CFG.colQty])||0,
+          email:String(r[CFG.colEmail]||'').trim(),
+          month
+        });
       });
       log('t1-log',`   ✓ ${f.name}  (${month})`);
     }
 
     log('t1-log','👥 讀取客戶對照表…');
-    const mapRows=toObj(await readWb(S.mapping).then(w=>w),null);
-    // fix: readWb returns promise
     const mapWb=await readWb(S.mapping);
     const eType={},eCust={};
     toObj(mapWb,mapWb.SheetNames[0]).forEach(r=>{
-      const em=String(r['信箱']||'').trim();
-      if(em){eType[em]=String(r['經銷/實體']||'實體店').trim();eCust[em]=String(r['客戶']||em).trim();}
+      const em=String(r[CFG.mapEmail]||'').trim();
+      if(em){
+        eType[em]=String(r[CFG.mapType]||CFG.typeRetail).trim();
+        eCust[em]=String(r[CFG.mapCust]||em).trim();
+      }
     });
 
     const months=[...new Set(allRows.map(r=>r.month))].sort();
@@ -620,15 +1320,13 @@ async function runAnalysis(){
       });
       return res;
     }
-    const dRows=allRows.filter(r=>eType[r.email]==='經銷商');
-    const rRows=allRows.filter(r=>eType[r.email]==='實體店');
+    const dRows=allRows.filter(r=>eType[r.email]===CFG.typeDealer);
+    const rRows=allRows.filter(r=>eType[r.email]===CFG.typeRetail);
     const dSug=getSug(dRows), rSug=getSug(rRows);
 
     const ewb=new ExcelJS.Workbook(); ewb.creator='叫貨評估工具';
 
-    // Summary sheets
     log('t1-log','📊 建立摘要分頁…');
-    // ── Detect issues (must be before writeSumSheet calls) ──
     const issuesT1=detectIssues(allRows.map(r=>({sku:r.sku,rawSku:r.rawSku,name:r.name})));
 
     function buildSum(rows){
@@ -644,7 +1342,7 @@ async function runAnalysis(){
       ws.mergeCells(1,1,1,tc);
       sc(ws.getCell(1,1),`【${label}】叫貨評估表　${pLabel}`,K.TITLE,true,K.WT,12);
       ws.getRow(1).height=28;
-      ['SKU','品項名稱',...mLbls,'月平均','建議叫貨量'].forEach((h,i)=>{
+      ['料號','品項名稱',...mLbls,'月平均','建議叫貨量'].forEach((h,i)=>{
         sc(ws.getCell(2,i+1),h,K.HEAD,true,K.WT,10,i===1?'left':'center');
       });
       ws.getRow(2).height=20;
@@ -663,67 +1361,367 @@ async function runAnalysis(){
         }
       });
       if(iss&&iss.length) ws.getColumn(tc+1).width=16;
-      ws.getColumn(1).width=12; ws.getColumn(2).width=42;
+      ws.getColumn(1).width=14; ws.getColumn(2).width=42;
       mLbls.forEach((_,i)=>ws.getColumn(3+i).width=8);
       ws.getColumn(3+nM).width=10; ws.getColumn(4+nM).width=12;
       ws.views=[{state:'frozen',xSplit:0,ySplit:2}];
     }
-    writeSumSheet('實體店面',buildSum(rRows),issuesT1);
-    writeSumSheet('經銷商',buildSum(dRows),issuesT1);
+
+    // ══ 📈 趨勢分析 ══════════════════════════════════════════════
+    function writeTrendSheet(ewb, rData, dData){
+      const L=LANGS[currentLang];
+      const ws=ewb.addWorksheet(L.ws_trend||'📈 Trend Analysis');
+
+      // ── Trend helpers ──
+      function trendColor(vals){
+        if(!vals||vals.length<2) return 'FFF5F5F5';
+        const last=vals[vals.length-1]||0, prev=vals[vals.length-2]||0;
+        if(prev===0&&last===0) return 'FFF5F5F5';
+        if(prev===0) return 'FF006400';
+        const pct=(last-prev)/prev*100;
+        if(pct>=30)  return 'FF1A7A1A';  // deep green
+        if(pct>=10)  return 'FF4CAF50';  // green
+        if(pct>=0)   return 'FFA5D6A7';  // light green
+        if(pct>=-10) return 'FFEEEEEE';  // grey
+        if(pct>=-30) return 'FFFFCC80';  // light orange
+        if(pct>=-50) return 'FFFF7043';  // orange
+        return 'FFD32F2F';               // red
+      }
+      function trendLabel(vals){
+        if(!vals||vals.length<2) return L.tr_na||'—';
+        const last=vals[vals.length-1]||0, prev=vals[vals.length-2]||0;
+        if(prev===0&&last===0) return L.tr_na||'—';
+        if(prev===0) return (L.tr_up3||'📈 Strong Growth');
+        const pct=(last-prev)/prev*100;
+        if(pct>=30)  return `${L.tr_up3||'📈 Strong Growth'} +${Math.round(pct)}%`;
+        if(pct>=5)   return `${L.tr_up2||'↗ Growth'} +${Math.round(pct)}%`;
+        if(pct>=-5)  return `${L.tr_flat||'→ Stable'} ${Math.round(pct)}%`;
+        if(pct>=-30) return `${L.tr_dn1||'↘ Slight Down'} ${Math.round(pct)}%`;
+        if(pct>=-50) return `${L.tr_dn2||'▼ Decline'} ${Math.round(pct)}%`;
+        return `${L.tr_dn3||'📉 Sharp Decline'} ${Math.round(pct)}%`;
+      }
+      function overallLabel(vals){
+        if(!vals||vals.length<3) return trendLabel(vals);
+        const n=vals.length, sumX=n*(n-1)/2, sumY=vals.reduce((a,b)=>a+b,0);
+        const sumXY=vals.reduce((s,v,i)=>s+i*v,0), sumX2=n*(n-1)*(2*n-1)/6;
+        const slope=(n*sumXY-sumX*sumY)/(n*sumX2-sumX*sumX);
+        const avg=sumY/n; if(avg===0) return L.tr_na||'—';
+        const pct=slope/avg*100;
+        if(pct>=8)   return L.tr_up3||'📈 Strong Growth';
+        if(pct>=1)   return L.tr_up2||'↗ Growth';
+        if(pct>=-1)  return L.tr_flat||'→ Stable';
+        if(pct>=-8)  return L.tr_dn1||'↘ Slight Down';
+        return L.tr_dn3||'📉 Sharp Decline';
+      }
+      function trendFontColor(label){
+        if(!label) return 'FF333333';
+        if(label.includes('📈')||label.includes('↗')||label.includes('Growth')||label.includes('成長')||label.includes('成长')||label.includes('増')||label.includes('微增')) return 'FF1A5E20';
+        if(label.includes('📉')||label.includes('▼')||label.includes('Decline')||label.includes('下降')||label.includes('減')||label.includes('微降')) return 'FFB71C1C';
+        return 'FF555555';
+      }
+
+      // ── Headers ──
+      const cols=[L.xl_sku||'SKU', L.xl_name||'Name', ...mLbls, L.xl_trend||'Trend', L.xl_latest||'Latest vs Prev'];
+      ws.mergeCells(1,1,1,cols.length);
+      sc(ws.getCell(1,1),(L.ws_trend||'📈 Trend Analysis')+(L.xl_trend_sub||' — Heatmap'),K.TITLE,true,K.WT,12);
+      ws.getRow(1).height=28;
+
+      function writeSection(label, data, startRow){
+        let r=startRow;
+        // Section header
+        ws.mergeCells(r,1,r,cols.length);
+        const sh=ws.getCell(r,1);
+        sh.value='▌ '+label; sh.font=fn('FF1D4ED8',true,11);
+        sh.fill=fl('FFDBEAFE'); sh.alignment=al('left'); sh.border=bd();
+        ws.getRow(r).height=22; r++;
+
+        // Column headers
+        cols.forEach((h,i)=>{
+          sc(ws.getCell(r,i+1),h,K.HEAD,true,K.WT,9,i===1?'left':'center');
+        });
+        ws.getRow(r).height=18; r++;
+
+        data.forEach((e,idx)=>{
+          const bg=idx%2?K.ALT:K.WHITE;
+          // SKU
+          const c1=ws.getCell(r,1); c1.value=e.sku;
+          c1.font=fn(K.BK,false,9); c1.fill=fl(bg); c1.alignment=al('center'); c1.border=bd();
+          // Name
+          const c2=ws.getCell(r,2); c2.value=e.name;
+          c2.font=fn(K.BK,false,9); c2.fill=fl(bg); c2.alignment=al('left'); c2.border=bd();
+          // Monthly heatmap cells
+          e.vals.forEach((v,mi)=>{
+            const cell=ws.getCell(r,3+mi);
+            cell.value=v||0;
+            const col=v>0?trendColor(e.vals.slice(0,mi+1)):'FFF8F8F8';
+            const textCol=v>0?(col==='FFA5D6A7'||col==='FFEEEEEE'?'FF333333':'FFFFFFFF'):'FFBBBBBB';
+            cell.fill=fl(col);
+            cell.font=fn(textCol,v>0,9);
+            cell.alignment=al('center'); cell.border=bd();
+          });
+          // Overall trend
+          const ov=overallLabel(e.vals);
+          const tc=ws.getCell(r,3+nM);
+          tc.value=ov; tc.font=fn(trendFontColor(ov),true,9);
+          tc.fill=fl(K.WHITE); tc.alignment=al('center'); tc.border=bd();
+          // Latest vs prev
+          const lv=trendLabel(e.vals);
+          const lc=ws.getCell(r,4+nM);
+          lc.value=lv; lc.font=fn(trendFontColor(lv),true,9);
+          lc.fill=fl(K.WHITE); lc.alignment=al('center'); lc.border=bd();
+
+          ws.getRow(r).height=16; r++;
+        });
+        return r+1;
+      }
+
+      let row=2;
+      row=writeSection(CFG.typeRetail, rData, row);
+      row=writeSection(CFG.typeDealer, dData, row);
+
+      // ── Legend ──
+      row++;
+      sc(ws.getCell(row,1), L.xl_legend||'Color Legend:', K.HEAD, true, K.WT, 9);
+      ws.getRow(row).height=16; row++;
+      [
+        ['FF1A7A1A', L.lg_up3||'▲▲ Strong Growth ≥30%'],
+        ['FF4CAF50', L.lg_up2||'▲ Growth 10-29%'],
+        ['FFA5D6A7', L.lg_up1||'↗ Slight Up 0-9%'],
+        ['FFEEEEEE', L.lg_flat||'→ Stable ±10%'],
+        ['FFFFCC80', L.lg_dn1||'↘ Slight Down 10-29%'],
+        ['FFFF7043', L.lg_dn2||'▼ Decline 30-49%'],
+        ['FFD32F2F', L.lg_dn3||'▼▼ Sharp Decline ≥50%'],
+      ].forEach(([col,lbl])=>{
+        const lc=ws.getCell(row,1); lc.value='  '; lc.fill=fl(col); lc.border=bd();
+        const tc=ws.getCell(row,2); tc.value=lbl; tc.font=fn(K.BK,false,9); tc.alignment=al('left'); tc.border=bd();
+        ws.getRow(row).height=14; row++;
+      });
+
+      ws.getColumn(1).width=14; ws.getColumn(2).width=36;
+      mLbls.forEach((_,i)=>ws.getColumn(3+i).width=8);
+      ws.getColumn(3+nM).width=16; ws.getColumn(4+nM).width=20;
+      ws.views=[{state:'frozen',xSplit:2,ySplit:0}];
+    }
+
+    // ══ 🏆 Top 10 ════════════════════════════════════════════════
+    function writeTop10Sheet(ewb, rData, dData){
+      const L=LANGS[currentLang];
+      const ws=ewb.addWorksheet(L.ws_top10||'🏆 Top 10 Items');
+      let row=1;
+
+      ws.mergeCells(row,1,row,6);
+      sc(ws.getCell(row,1),'🏆 '+(L.ws_top10||'Top 10 Items')+(L.xl_top10_sub||' — By Suggested Qty'),K.TITLE,true,K.WT,12);
+      ws.getRow(row).height=28; row++;
+
+      function writeTop10Section(label, data, startRow){
+        let r=startRow;
+        ws.mergeCells(r,1,r,6);
+        const hdr=ws.getCell(r,1);
+        hdr.value='▌ '+label+' Top 10'; hdr.font=fn('FF1D4ED8',true,11);
+        hdr.fill=fl('FFE8F0FE'); hdr.alignment=al('left'); hdr.border=bd();
+        ws.getRow(r).height=22; r++;
+
+        [L.xl_rank||'Rank',L.xl_sku||'SKU',L.xl_name||'Name',L.xl_avg||'Avg',L.xl_sug||'Suggested',L.xl_trend||'Trend'].forEach((h,i)=>{
+          sc(ws.getCell(r,i+1),h,K.HEAD,true,K.WT,10,i===2?'left':'center');
+        });
+        ws.getRow(r).height=20; r++;
+
+        const medals=['🥇','🥈','🥉'];
+        data.slice(0,10).forEach((e,i)=>{
+          const bg=['FFFFF9E0','FFFFF0F0','FFF0FFF0','FFF8F8F8'][Math.min(i,3)];
+          const rankLabel=(medals[i]||`${i+1}`);
+
+          // Rank
+          const rc=ws.getCell(r,1); rc.value=rankLabel;
+          rc.font=fn(K.BK,true,11); rc.fill=fl(bg); rc.alignment=al('center'); rc.border=bd();
+
+          // SKU
+          const sc2=ws.getCell(r,2); sc2.value=e.sku;
+          sc2.font=fn(K.BK,false,10); sc2.fill=fl(bg); sc2.alignment=al('center'); sc2.border=bd();
+
+          // Name
+          const nc=ws.getCell(r,3); nc.value=e.name;
+          nc.font=fn(K.BK,false,10); nc.fill=fl(bg); nc.alignment=al('left'); nc.border=bd();
+
+          // Avg
+          const ac=ws.getCell(r,4); ac.value=Math.round(e.avg*10)/10;
+          ac.font=fn(K.BK,false,10); ac.fill=fl(bg); ac.alignment=al('center'); ac.border=bd();
+
+          // Suggest (green highlight)
+          const sugc=ws.getCell(r,5); sugc.value=e.sug;
+          sugc.font=fn(K.GREEN_TXT,true,10); sugc.fill=fl(K.GREEN); sugc.alignment=al('center'); sugc.border=bd();
+
+          // Trend: show last 3 months + arrow + overall trend label
+          const nonZero=e.vals.filter(v=>v>0);
+          let trendDisplay='—';
+          let trendArgb='FF888888';
+          if(nonZero.length>=2){
+            const last=e.vals[e.vals.length-1]||0;
+            const prev=e.vals[e.vals.length-2]||0;
+            const pct=prev>0?Math.round((last-prev)/prev*100):null;
+            // Overall slope
+            const n=e.vals.length, sumX=n*(n-1)/2, sumY=e.vals.reduce((a,b)=>a+b,0);
+            const sumXY=e.vals.reduce((s,v,i)=>s+i*v,0), sumX2=n*(n-1)*(2*n-1)/6;
+            const slope=(n*sumXY-sumX*sumY)/(n*sumX2-sumX*sumX);
+            const avg=sumY/n||1; const slopePct=slope/avg*100;
+            const arrow=pct===null?'—':pct>=20?'▲▲':pct>=5?'▲':pct>=-5?'→':pct>=-20?'▼':'▼▼';
+            const pctStr=pct!==null?(pct>=0?' +'+pct+'%':' '+pct+'%'):'';
+            const overall=slopePct>=8?'📈':slopePct>=1?'↗':slopePct>=-1?'→':slopePct>=-8?'↘':'📉';
+            trendDisplay=overall+' '+arrow+pctStr;
+            trendArgb=slopePct>=1?'FF1A5E20':slopePct<=-1?'FFB71C1C':'FF555555';
+          }
+          const tc=ws.getCell(r,6); tc.value=trendDisplay;
+          tc.font={name:'Arial',bold:true,size:10,color:{argb:trendArgb}};
+          tc.fill=fl(bg); tc.alignment={horizontal:'center',vertical:'middle'}; tc.border=bd();
+
+          ws.getRow(r).height=20; r++;
+        });
+        return r+1;
+      }
+
+      row=writeTop10Section(CFG.typeRetail, rData, row);
+      row=writeTop10Section(CFG.typeDealer, dData, row);
+
+      // ── Combined Top 10 (total across both channels) ──
+      row++;
+      ws.mergeCells(row,1,row,6);
+      const combHdr=ws.getCell(row,1);
+      combHdr.value=L.xl_combined||'▌ Combined Top 10'; combHdr.font=fn('FF1D4ED8',true,11);
+      combHdr.fill=fl('FFE8F0FE'); combHdr.alignment=al('left'); combHdr.border=bd();
+      ws.getRow(row).height=22; row++;
+
+      [L.xl_rank||'Rank',L.xl_sku||'SKU',L.xl_name||'Name',CFG.typeRetail,CFG.typeDealer,L.xl_total||'Total'].forEach((h,i)=>{
+        sc(ws.getCell(row,i+1),h,K.HEAD,true,K.WT,10,i===2?'left':'center');
+      });
+      ws.getRow(row).height=20; row++;
+
+      // Merge rData + dData by sku
+      const combined={};
+      rData.forEach(e=>{ combined[e.sku]={sku:e.sku,name:e.name,retail:e.sug,dealer:0}; });
+      dData.forEach(e=>{
+        if(combined[e.sku]) combined[e.sku].dealer=e.sug;
+        else combined[e.sku]={sku:e.sku,name:e.name,retail:0,dealer:e.sug};
+      });
+      const combArr=Object.values(combined).map(e=>({...e,total:e.retail+e.dealer}))
+        .sort((a,b)=>b.total-a.total).slice(0,10);
+
+      const medals2=['🥇','🥈','🥉'];
+      combArr.forEach((e,i)=>{
+        const bg=['FFFFF9E0','FFFFF0F0','FFF0FFF0','FFF8F8F8'][Math.min(i,3)];
+        [medals2[i]||`${i+1}`, e.sku, e.name, e.retail||'-', e.dealer||'-', e.total]
+          .forEach((v,ci)=>{
+            const cell=ws.getCell(row,ci+1);
+            cell.value=v;
+            const isTotal=ci===5;
+            cell.font=fn(isTotal?K.GREEN_TXT:K.BK,isTotal,ci===0?11:10);
+            cell.fill=fl(isTotal?K.GREEN:bg);
+            cell.alignment=al(ci===2?'left':'center'); cell.border=bd();
+          });
+        ws.getRow(row).height=20; row++;
+      });
+
+      ws.getColumn(1).width=8; ws.getColumn(2).width=14;
+      ws.getColumn(3).width=40; ws.getColumn(4).width=12;
+      ws.getColumn(5).width=12; ws.getColumn(6).width=20;
+      ws.views=[{state:'frozen',xSplit:0,ySplit:2}];
+    }
+    const rData=buildSum(rRows), dData=buildSum(dRows);
+    writeSumSheet(CFG.typeRetail,rData,issuesT1);
+    writeSumSheet(CFG.typeDealer,dData,issuesT1);
+    writeTrendSheet(ewb,rData,dData);
+    writeTop10Sheet(ewb,rData,dData);
 
     // 填報 sheet
     log('t1-log','📋 填入叫貨模板…');
     const tmplWb=await readWb(S.template);
-    const ws3=ewb.addWorksheet('每月預估叫貨填報');
-    let cr=1;
+    const ws3=ewb.addWorksheet(LANGS[currentLang].ws_fill||'每月預估叫貨填報');
+    let cr=1, tmplHits=0;
+    log('t1-log','📋 讀取模板…');
+
+    // ── Smart column detection: auto-find SKU & name columns ──
+    function detectTmplCols(rows){
+      // Priority 1: exact match from CFG
+      // Priority 2: fuzzy match common keywords
+      const skuKws=['內部編號','品號','料號','SKU','sku','編號','品項編號'];
+      const nameKws=['名稱','品名','品項名稱','商品名稱','產品名稱','項目'];
+      if(!rows||!rows.length) return {skuCol:CFG.tmplSku, nameCol:CFG.tmplName};
+      // Get all column names from first data row
+      const allCols=Object.keys(rows[0]);
+      const findCol=(kws)=>{
+        // exact CFG match first
+        const cfgKey=kws===skuKws?CFG.tmplSku:CFG.tmplName;
+        if(allCols.includes(cfgKey)) return cfgKey;
+        // fuzzy keyword match
+        for(const kw of kws){
+          const found=allCols.find(c=>String(c).includes(kw)||kw.includes(String(c)));
+          if(found) return found;
+        }
+        return allCols[kws===skuKws?0:1]||allCols[0]; // fallback to first/second col
+      };
+      return {skuCol:findCol(skuKws), nameCol:findCol(nameKws)};
+    }
+
     tmplWb.SheetNames.forEach(sn=>{
       const rows=toObj(tmplWb,sn);
+      // Skip empty sheets
+      if(!rows||!rows.length){ log('t1-log',`   ⚠️ 模板分頁「${sn}」無資料，跳過`,'warn'); return; }
+
+      const {skuCol,nameCol}=detectTmplCols(rows);
+      log('t1-log',`   ✓ 模板「${sn}」  料號欄:「${skuCol}」  品名欄:「${nameCol}」`);
+
       ws3.mergeCells(cr,1,cr,5);
       sc(ws3.getCell(cr,1),`【${sn}】`,K.TITLE,true,K.WT,12); ws3.getRow(cr).height=24; cr++;
-      ['內部編號','名稱','經銷商 採購預計數量','實體店 採購預計數量','備註'].forEach((h,i)=>{
+      [skuCol, nameCol, `${CFG.typeRetail} 採購預計數量`, `${CFG.typeDealer} 採購預計數量`,'備註'].forEach((h,i)=>{
         sc(ws3.getCell(cr,i+1),h,K.HEAD,true,K.WT,10,i===1?'left':'center');
       });
       ws3.getRow(cr).height=18; cr++;
+
       rows.forEach((r,i)=>{
-        const sku=String(r['內部編號']||'').trim();
+        const sku=String(r[skuCol]||'').trim();
+        if(!sku) return; // skip empty rows
         const d=dSug[sku]||0, re=rSug[sku]||0; const alt=i%2?K.ALT:K.WHITE;
-        [r['內部編號'],r['名稱']||'',d>0?d:'-',re>0?re:'-',''].forEach((v,ci)=>{
-          const bg=ci===2?(d>0?K.GREEN:K.YELLOW):ci===3?(re>0?K.GREEN:K.YELLOW):alt;
-          const bold=ci===2?d>0:ci===3?re>0:false;
-          const txt=ci===2&&d>0?K.GREEN_TXT:ci===3&&re>0?K.GREEN_TXT:K.BK;
+        const nameVal=String(r[nameCol]||'');
+        [sku, nameVal, re>0?re:'-', d>0?d:'-', ''].forEach((v,ci)=>{
+          const bg=ci===2?(re>0?K.GREEN:K.YELLOW):ci===3?(d>0?K.GREEN:K.YELLOW):alt;
+          const bold=ci===2?re>0:ci===3?d>0:false;
+          const txt=ci===2&&re>0?K.GREEN_TXT:ci===3&&d>0?K.GREEN_TXT:K.BK;
           sc(ws3.getCell(cr,ci+1),v,bg,bold,txt,10,ci===1?'left':'center');
         });
-        ws3.getRow(cr).height=16; cr++;
+        ws3.getRow(cr).height=16; cr++; tmplHits++;
       });
       cr++;
     });
+
+    if(tmplHits===0) log('t1-log','   ⚠️ 模板無法對應到任何料號，請到「⚙️ 欄位設定」確認模板料號欄名稱','warn');
+    else log('t1-log',`   ✓ 模板填入完成，共 ${tmplHits} 筆`);
+
     ws3.mergeCells(cr,1,cr,5);
     const nc=ws3.getCell(cr,1);
     nc.value=`※ 計算基準：${pLabel}　｜　綠底＝有資料　黃底＝無近期銷售，請人工評估`;
     nc.font=fn(K.GR,false,9); nc.alignment=al('left');
-    [12,44,18,18,16].forEach((w,i)=>ws3.getColumn(i+1).width=w);
+    [14,44,18,18,16].forEach((w,i)=>ws3.getColumn(i+1).width=w);
 
     // 客戶明細 sheet
     log('t1-log','🔍 建立客戶明細…');
     const eByCust={};
     Object.entries(eCust).forEach(([em,cu])=>{eByCust[cu]=em;});
     const allCusts=[...new Set(allRows.map(r=>eCust[r.email]||r.email))].sort((a,b)=>{
-      const ta=eType[eByCust[a]||'']||'實體店', tb=eType[eByCust[b]||'']||'實體店';
-      if(ta!==tb) return ta==='經銷商'?-1:1;
+      const ta=eType[eByCust[a]||'']||CFG.typeRetail, tb=eType[eByCust[b]||'']||CFG.typeRetail;
+      if(ta!==tb) return ta===CFG.typeDealer?-1:1;
       return a.localeCompare(b,'zh-TW');
     });
     const allSkus=[...new Set(allRows.map(r=>r.sku))];
     const skuTot={}; allRows.forEach(r=>{skuTot[r.sku]=(skuTot[r.sku]||0)+r.qty;});
     allSkus.sort((a,b)=>(skuTot[b]||0)-(skuTot[a]||0));
     const CP=nM+2, CS=3, SS=CS+allCusts.length*CP, TC=SS+nM;
-    const ws4=ewb.addWorksheet('各客戶品項明細');
+    const ws4=ewb.addWorksheet(LANGS[currentLang].ws_detail||'各客戶品項明細');
     ws4.mergeCells(1,1,1,TC);
     sc(ws4.getCell(1,1),'各客戶品項訂購明細',K.TITLE,true,K.WT,13); ws4.getRow(1).height=28;
-    ws4.mergeCells(2,1,3,1); sc(ws4.getCell(2,1),'SKU',K.DARK,true,K.WT,9);
+    ws4.mergeCells(2,1,3,1); sc(ws4.getCell(2,1),'料號',K.DARK,true,K.WT,9);
     ws4.mergeCells(2,2,3,2); sc(ws4.getCell(2,2),'品項名稱',K.DARK,true,K.WT,9);
     allCusts.forEach((cu,i)=>{
       const cs=CS+i*CP; const em=eByCust[cu]||'';
-      const isD=eType[em]==='經銷商'; const lf=isD?K.DIST_L:K.RETAIL_L;
+      const isD=eType[em]===CFG.typeDealer; const lf=isD?K.DIST_L:K.RETAIL_L;
       ws4.mergeCells(2,cs,2,cs+CP-1);
       sc(ws4.getCell(2,cs),cu,isD?K.DIST_H:K.RETAIL_H,true,K.WT,8,'center');
       mLbls.forEach((l,j)=>sc(ws4.getCell(3,cs+j),l,lf,true,K.BK,8));
@@ -740,7 +1738,7 @@ async function runAnalysis(){
       sc(ws4.getCell(row,2),skuName[sku]||'',K.ALT,false,K.BK,9,'left');
       const mTots={}; months.forEach(m=>mTots[m]=0); let grand=0;
       allCusts.forEach((cu,i)=>{
-        const em=eByCust[cu]||''; const isD=eType[em]==='經銷商'; const lf=isD?K.DIST_L:K.RETAIL_L;
+        const em=eByCust[cu]||''; const isD=eType[em]===CFG.typeDealer; const lf=isD?K.DIST_L:K.RETAIL_L;
         const cs=CS+i*CP; let ctot=0;
         months.forEach((m,j)=>{
           const v=allRows.filter(r=>(eCust[r.email]||r.email)===cu&&r.month===m&&r.sku===sku).reduce((s,r)=>s+r.qty,0);
@@ -758,12 +1756,12 @@ async function runAnalysis(){
       const g=Object.values(mTots).reduce((a,b)=>a+b,0);
       sc(ws4.getCell(row,SS+nM),g>0?g:'',g>0?K.DARK:'FF555555',g>0,K.WT,9);
     });
-    ws4.getColumn(1).width=10; ws4.getColumn(2).width=36;
+    ws4.getColumn(1).width=14; ws4.getColumn(2).width=36;
     allCusts.forEach((_,i)=>{const cs=CS+i*CP;for(let j=0;j<CP;j++) ws4.getColumn(cs+j).width=j<nM?5.5:6;});
     for(let j=0;j<=nM;j++) ws4.getColumn(SS+j).width=8;
     ws4.views=[{state:'frozen',xSplit:2,ySplit:3}];
 
-    writeIssueSheet(ewb,issuesT1,'叫貨分析');
+    writeIssueSheet(ewb,issuesT1,LANGS[currentLang].ws_issue||'⚠️ 品項異常警告');
     const errsT1=issuesT1.filter(i=>i.level==='ERROR').length;
     const warnsT1=issuesT1.filter(i=>i.level==='WARN').length;
     if(errsT1) log('t1-log',`   ❌ 品項異常：${errsT1} 個錯誤，詳見最後分頁`,'err');
@@ -793,19 +1791,15 @@ async function runMerge(){
     const allRows=[];
     for(const f of S.ex){
       const wb=await readWb(f);
-      // Find sheet containing target name
       const sn=wb.SheetNames.find(n=>n.includes(targetSheet))||wb.SheetNames[0];
       const raw=toArr(wb,sn);
       if(!raw||raw.length<2){log('t2-log',`   ⚠️ ${f.name}：分頁無資料，跳過`,'warn');continue;}
-
-      // Find header row (scan first 5 rows for nameKey + qtyKey)
       let hIdx=-1;
       for(let i=0;i<Math.min(5,raw.length);i++){
         const row=(raw[i]||[]).map(v=>String(v||''));
         if(row.some(v=>v.includes(nameKey))&&row.some(v=>v.includes(qtyKey))){hIdx=i;break;}
       }
       if(hIdx<0){log('t2-log',`   ⚠️ ${f.name}：找不到「${nameKey}」或「${qtyKey}」欄，跳過`,'warn');continue;}
-
       const hdr=(raw[hIdx]||[]).map(v=>String(v||''));
       const nameIdx=hdr.findIndex(h=>h.includes(nameKey));
       const qtyIdx=hdr.findIndex(h=>h.includes(qtyKey));
@@ -815,7 +1809,6 @@ async function runMerge(){
       const priceIdx=hdr.findIndex(h=>h.includes('單價')&&h.includes('未稅'));
       const subExIdx=hdr.findIndex(h=>h.includes('小計')&&h.includes('未稅'));
       const subIncIdx=hdr.findIndex(h=>h.includes('小計')&&h.includes('含稅'));
-
       let cnt=0;
       for(let i=hIdx+1;i<raw.length;i++){
         const row=raw[i];
@@ -827,10 +1820,8 @@ async function runMerge(){
         if(dateVal instanceof Date) dateVal=dateVal.toLocaleDateString('zh-TW');
         else if(dateVal) dateVal=String(dateVal);
         allRows.push({
-          date:dateVal||'',
-          order:orderIdx>=0?String(row[orderIdx]||''):'',
-          qty, name,
-          sku:skuIdx>=0?String(row[skuIdx]||''):'',
+          date:dateVal||'', order:orderIdx>=0?String(row[orderIdx]||''):'',
+          qty, name, sku:skuIdx>=0?String(row[skuIdx]||''):'',
           price:priceIdx>=0?parseFloat(row[priceIdx])||0:0,
           subEx:subExIdx>=0?parseFloat(row[subExIdx])||0:0,
           subInc:subIncIdx>=0?parseFloat(row[subIncIdx])||0:0,
@@ -841,26 +1832,19 @@ async function runMerge(){
       log('t2-log',`   ✓ ${f.name}  → ${cnt} 筆`);
     }
     if(!allRows.length){log('t2-log','❌ 無資料，請確認欄位名稱設定','err');setBtn('t2-btn',false,'🔀 開始合併，產出 Excel');return;}
-
-    // Pivot by name
     const piv={};
     allRows.forEach(r=>{
       if(!piv[r.name]) piv[r.name]={qty:0,price:r.price,subEx:0,subInc:0};
-      piv[r.name].qty+=r.qty;
-      piv[r.name].subEx+=r.subEx;
-      piv[r.name].subInc+=r.subInc;
+      piv[r.name].qty+=r.qty; piv[r.name].subEx+=r.subEx; piv[r.name].subInc+=r.subInc;
       if(!piv[r.name].price&&r.price) piv[r.name].price=r.price;
     });
     const pivArr=Object.entries(piv).sort((a,b)=>b[1].qty-a[1].qty);
-
     const ewb=new ExcelJS.Workbook(); ewb.creator='叫貨評估工具';
-
-    // ── Sheet 1: 採購單明細 ──
-    const ws1=ewb.addWorksheet('採購單明細');
+    const ws1=ewb.addWorksheet(LANGS[currentLang].ws_po||'採購單明細');
     ws1.mergeCells(1,1,1,9);
     sc(ws1.getCell(1,1),'採購單明細合併表',K.TITLE,true,K.WT,13); ws1.getRow(1).height=28;
-    const dh=['下單日期','採購單號','數量','品名','山淬品號','單價(未稅)','小計(未稅)','小計(含稅)','來源檔'];
-    dh.forEach((h,i)=>sc(ws1.getCell(2,i+1),h,K.HEAD,true,K.WT,10,i===3?'left':'center'));
+    ['下單日期','採購單號','數量','品名','料號','單價(未稅)','小計(未稅)','小計(含稅)','來源檔'].forEach((h,i)=>
+      sc(ws1.getCell(2,i+1),h,K.HEAD,true,K.WT,10,i===3?'left':'center'));
     ws1.getRow(2).height=20;
     allRows.forEach((r,i)=>{
       const row=i+3; const alt=i%2?K.ALT:K.WHITE; ws1.getRow(row).height=15;
@@ -870,9 +1854,7 @@ async function runMerge(){
     });
     [12,14,8,46,18,12,12,12,30].forEach((w,i)=>ws1.getColumn(i+1).width=w);
     ws1.views=[{state:'frozen',xSplit:0,ySplit:2}];
-
-    // ── Sheet 2: 樞紐統計 ──
-    const ws2=ewb.addWorksheet('樞紐統計');
+    const ws2=ewb.addWorksheet(LANGS[currentLang].ws_pivot||'樞紐統計');
     ws2.mergeCells(1,1,1,5);
     sc(ws2.getCell(1,1),'品項統計樞紐',K.TITLE,true,K.WT,13); ws2.getRow(1).height=28;
     ['品名','加總 - 數量','單價(未稅)','小計(未稅)','小計(含稅)'].forEach((h,i)=>{
@@ -880,13 +1862,22 @@ async function runMerge(){
     });
     ws2.getRow(2).height=20;
     let tQty=0,tEx=0,tInc=0;
+    const issuesT2=detectIssues(allRows.map(r=>({sku:r.sku||r.name,rawSku:r.sku,name:r.name})));
     pivArr.forEach(([name,d],i)=>{
       const row=i+3; const alt=i%2?K.ALT:K.WHITE; ws2.getRow(row).height=16;
-      sc(ws2.getCell(row,1),name,alt,false,K.BK,10,'left');
-      sc(ws2.getCell(row,2),d.qty,alt,true,K.BK,10);
-      sc(ws2.getCell(row,3),d.price||'',alt,false,K.BK,10);
-      sc(ws2.getCell(row,4),d.subEx||'',alt,false,K.BK,10);
-      sc(ws2.getCell(row,5),d.subInc||'',alt,false,K.BK,10);
+      const hasIss=issuesT2.some(x=>x.name1===name||x.name2===name);
+      const rb=hasIss?(i%2?'FFFFF9E6':'FFFFEEBA'):alt;
+      sc(ws2.getCell(row,1),name,rb,false,K.BK,10,'left');
+      sc(ws2.getCell(row,2),d.qty,rb,true,K.BK,10);
+      sc(ws2.getCell(row,3),d.price||'',rb,false,K.BK,10);
+      sc(ws2.getCell(row,4),d.subEx||'',rb,false,K.BK,10);
+      sc(ws2.getCell(row,5),d.subInc||'',rb,false,K.BK,10);
+      if(hasIss){
+        const wc=ws2.getCell(row,6);
+        wc.value='⚠️ 請見異常警告'; wc.font=fn('FF8B4500',true,9);
+        wc.fill=fl('FFFFEEBA'); wc.alignment=al('center'); wc.border=bd();
+        ws2.getColumn(6).width=16;
+      }
       tQty+=d.qty; tEx+=d.subEx; tInc+=d.subInc;
     });
     const tr=pivArr.length+3; ws2.getRow(tr).height=18;
@@ -897,33 +1888,9 @@ async function runMerge(){
     sc(ws2.getCell(tr,5),Math.round(tInc)||'',K.DARK,true,K.WT,11);
     [46,14,12,14,14].forEach((w,i)=>ws2.getColumn(i+1).width=w);
     ws2.views=[{state:'frozen',xSplit:0,ySplit:2}];
-
-    const issuesT2=detectIssues(allRows.map(r=>({sku:r.sku||r.name,name:r.name})));
-    writeIssueSheet(ewb,issuesT2,'EX合併');
-    const errsT2=issuesT2.filter(i=>i.level==='ERROR').length;
-    const warnsT2=issuesT2.filter(i=>i.level==='WARN').length;
-    if(errsT2) log('t2-log',`   ❌ 品名異常：${errsT2} 個錯誤，詳見最後分頁`,'err');
-    else if(warnsT2) log('t2-log',`   ⚠️ 品名異常：${warnsT2} 個警告，詳見最後分頁`,'warn');
-    else log('t2-log','   ✅ 品名資料無異常');
-
-    // Highlight pivot rows with issues
-    pivArr.forEach(([name,],i)=>{
-      const row=i+3;
-      const hasIss=issuesT2.some(x=>x.name1===name||x.name2===name);
-      if(hasIss){
-        for(let c=1;c<=5;c++){
-          const cell=ws2.getCell(row,c);
-          cell.fill=fl(i%2?'FFFFF9E6':'FFFFEEBA');
-        }
-        const wc=ws2.getCell(row,6);
-        wc.value='⚠️ 請見異常警告'; wc.font=fn('FF8B4500',true,9);
-        wc.fill=fl('FFFFEEBA'); wc.alignment=al('center'); wc.border=bd();
-        ws2.getColumn(6).width=16;
-      }
-    });
-
+    writeIssueSheet(ewb,issuesT2,LANGS[currentLang].ws_issue||'⚠️ 品項異常警告');
     const now=new Date();
-    const fname=`EX採購明細合併_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}.xlsx`;
+    const fname=`採購明細合併_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}.xlsx`;
     log('t2-log','💾 產出 Excel…');
     await saveWb(ewb,fname);
     log('t2-log',`✅ 完成！共 ${allRows.length} 筆，${pivArr.length} 個品項`,'ok');
@@ -941,24 +1908,21 @@ async function runCompare(){
   if(!S.mapping3) return alert('請選擇客戶對照表！');
   setBtn('t3-btn',true,'⏳ 分析中…'); clrLog('t3-log');
   try{
-    // ── Read forecast (叫貨評估表.xlsx → 每月預估叫貨填報) ──
     log('t3-log','📂 讀取叫貨評估表（預估）…');
     const fwb=await readWb(S.forecast);
     const fSn=fwb.SheetNames.find(n=>n.includes('預估叫貨'))||fwb.SheetNames[0];
     const fRaw=toArr(fwb,fSn);
-
-    // Find header row containing 內部編號
     let fHIdx=-1;
     for(let i=0;i<fRaw.length;i++){
-      if((fRaw[i]||[]).some(v=>String(v||'').includes('內部編號'))){fHIdx=i;break;}
+      if((fRaw[i]||[]).some(v=>String(v||'').includes(CFG.tmplSku))){fHIdx=i;break;}
     }
     const fItems=[];
     if(fHIdx>=0){
       const fH=(fRaw[fHIdx]||[]).map(v=>String(v||''));
-      const skuI=fH.findIndex(h=>h.includes('內部編號'));
-      const nameI=fH.findIndex(h=>h.includes('名稱'));
-      const distI=fH.findIndex(h=>h.includes('經銷'));
-      const retailI=fH.findIndex(h=>h.includes('實體'));
+      const skuI=fH.findIndex(h=>h.includes(CFG.tmplSku));
+      const nameI=fH.findIndex(h=>h.includes(CFG.tmplName));
+      const distI=fH.findIndex(h=>h.includes(CFG.typeDealer));
+      const retailI=fH.findIndex(h=>h.includes(CFG.typeRetail));
       let cat='';
       for(let i=fHIdx+1;i<fRaw.length;i++){
         const row=fRaw[i]||[];
@@ -966,64 +1930,52 @@ async function runCompare(){
         if(first.startsWith('【')&&first.endsWith('】')){cat=first.slice(1,-1);continue;}
         if(first.includes('計算基準')||first.includes('※')) continue;
         const sku=skuI>=0?String(row[skuI]||'').trim():'';
-        if(!sku||sku==='內部編號') continue;
-        fItems.push({
-          sku, cat,
+        if(!sku||sku===CFG.tmplSku) continue;
+        fItems.push({sku,cat,
           name:nameI>=0?String(row[nameI]||''):'',
           d:distI>=0?parseFloat(row[distI])||0:0,
-          r:retailI>=0?parseFloat(row[retailI])||0:0,
-        });
+          r:retailI>=0?parseFloat(row[retailI])||0:0});
       }
     }
     log('t3-log',`   ✓ 讀到 ${fItems.length} 個預估品項`);
-
-    // ── Read actual orders (後台原始格式) ──
     log('t3-log','📂 讀取本月實際訂單…');
     const mapWb=await readWb(S.mapping3);
     const eType={};
     toObj(mapWb,mapWb.SheetNames[0]).forEach(r=>{
-      const em=String(r['信箱']||'').trim();
-      if(em) eType[em]=String(r['經銷/實體']||'實體店').trim();
+      const em=String(r[CFG.mapEmail]||'').trim();
+      if(em) eType[em]=String(r[CFG.mapType]||CFG.typeRetail).trim();
     });
-
     const aDist={},aRetail={};
     for(const f of S.actual){
       const wb=await readWb(f);
       toObj(wb,wb.SheetNames[0]).forEach(r=>{
-        const sku=fixSku(r['SKU']||'',r['項目']||'');
-        const qty=parseFloat(r['數量'])||0;
-        const em=String(r['信箱']||'').trim();
+        const sku=normSku(String(r[CFG.colSku]||'').trim());
+        const qty=parseFloat(r[CFG.colQty])||0;
+        const em=String(r[CFG.colEmail]||'').trim();
         const t=eType[em]||'未分類';
-        if(t==='經銷商') aDist[sku]=(aDist[sku]||0)+qty;
-        if(t==='實體店') aRetail[sku]=(aRetail[sku]||0)+qty;
+        if(t===CFG.typeDealer) aDist[sku]=(aDist[sku]||0)+qty;
+        if(t===CFG.typeRetail) aRetail[sku]=(aRetail[sku]||0)+qty;
       });
       log('t3-log',`   ✓ ${f.name}`);
     }
-
-    // ── Build comparison Excel ──
     const ewb=new ExcelJS.Workbook(); ewb.creator='叫貨評估工具';
-    const ws=ewb.addWorksheet('叫貨準確度對比');
+    const ws=ewb.addWorksheet(LANGS[currentLang].ws_compare||'叫貨準確度對比');
     const TC=13;
     ws.mergeCells(1,1,1,TC);
     sc(ws.getCell(1,1),'叫貨預估 vs 實際訂單　對比分析',K.TITLE,true,K.WT,13); ws.getRow(1).height=28;
-
-    // Row 2: group headers
-    ws.mergeCells(2,1,3,1); sc(ws.getCell(2,1),'SKU',K.DARK,true,K.WT,9);
+    ws.mergeCells(2,1,3,1); sc(ws.getCell(2,1),'料號',K.DARK,true,K.WT,9);
     ws.mergeCells(2,2,3,2); sc(ws.getCell(2,2),'品項名稱',K.DARK,true,K.WT,9);
     ws.mergeCells(2,3,3,3); sc(ws.getCell(2,3),'分類',K.DARK,true,K.WT,9);
-    ws.mergeCells(2,4,2,7);  sc(ws.getCell(2,4),'經銷商',K.DIST_H,true,K.WT,11);
-    ws.mergeCells(2,8,2,11); sc(ws.getCell(2,8),'實體店',K.RETAIL_H,true,K.WT,11);
+    ws.mergeCells(2,4,2,7);  sc(ws.getCell(2,4),CFG.typeDealer,K.DIST_H,true,K.WT,11);
+    ws.mergeCells(2,8,2,11); sc(ws.getCell(2,8),CFG.typeRetail,K.RETAIL_H,true,K.WT,11);
     ws.mergeCells(2,12,3,13); sc(ws.getCell(2,12),'備註',K.DARK,true,K.WT,9);
     ws.getRow(2).height=24;
-
-    // Row 3: sub-labels
     const DS='FFEDE7F6', RS='FFE3F2FD';
     ['預估','實際','差異','準確率'].forEach((l,j)=>{
       sc(ws.getCell(3,4+j),l,DS,true,K.BK,9);
       sc(ws.getCell(3,8+j),l,RS,true,K.BK,9);
     });
     ws.getRow(3).height=18;
-
     function dfill(d){return d>0?K.GREEN:d<0?K.RED:K.WHITE;}
     function accCell(c,pred,actual,lf){
       if(pred===0&&actual===0){sc(c,'',lf,false,K.GR,9);return;}
@@ -1034,40 +1986,31 @@ async function runCompare(){
       c.value=pctV; c.numFmt='0%';
       c.font=fn(K.BK,false,9); c.fill=fl(bg); c.alignment=al('center'); c.border=bd();
     }
-
     fItems.forEach((item,i)=>{
       const row=i+4; const alt=i%2?K.ALT:K.WHITE; ws.getRow(row).height=16;
       const fp=item.d||0, rp=item.r||0;
-      const fa=Math.round(aDist[item.sku]||0);
-      const ra=Math.round(aRetail[item.sku]||0);
+      const fa=Math.round(aDist[item.sku]||0), ra=Math.round(aRetail[item.sku]||0);
       const fd=fa-fp, rd=ra-rp;
-
       sc(ws.getCell(row,1),item.sku,alt,false,K.BK,9);
       sc(ws.getCell(row,2),item.name,alt,false,K.BK,9,'left');
       sc(ws.getCell(row,3),item.cat,alt,false,K.BK,9);
-      // 經銷商
       sc(ws.getCell(row,4),fp>0?fp:'',K.DIST_L,false,K.BK,9);
       sc(ws.getCell(row,5),fa>0?fa:'',K.DIST_L,false,K.BK,9);
       sc(ws.getCell(row,6),fd>0?`+${fd}`:fd!==0?String(fd):'',dfill(fd),fd!==0,fd>0?K.GREEN_TXT:fd<0?'FFC0392B':K.BK,9);
       accCell(ws.getCell(row,7),fp,fa,K.DIST_L);
-      // 實體店
       sc(ws.getCell(row,8),rp>0?rp:'',K.RETAIL_L,false,K.BK,9);
       sc(ws.getCell(row,9),ra>0?ra:'',K.RETAIL_L,false,K.BK,9);
       sc(ws.getCell(row,10),rd>0?`+${rd}`:rd!==0?String(rd):'',dfill(rd),rd!==0,rd>0?K.GREEN_TXT:rd<0?'FFC0392B':K.BK,9);
       accCell(ws.getCell(row,11),rp,ra,K.RETAIL_L);
       sc(ws.getCell(row,12),'',alt); sc(ws.getCell(row,13),'',alt);
     });
-
-    // Note row
     const nr=fItems.length+5;
     ws.mergeCells(nr,1,nr,TC);
     const nc=ws.getCell(nr,1);
     nc.value='準確率：🟢≥80%準確　🟡50~79%尚可　🔴<50%偏差大　｜　差異：+ 比預估多叫，— 比預估少叫';
     nc.font=fn(K.GR,false,9); nc.alignment=al('left');
-
     [10,38,10,8,8,9,9,8,8,9,9,10,10].forEach((w,i)=>ws.getColumn(i+1).width=w);
     ws.views=[{state:'frozen',xSplit:3,ySplit:3}];
-
     const now=new Date();
     const fname=`叫貨準確度對比_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}.xlsx`;
     log('t3-log','💾 產出 Excel…');
@@ -1076,6 +2019,126 @@ async function runCompare(){
   }catch(e){log('t3-log',`❌ 錯誤：${e.message}`,'err');console.error(e);}
   setBtn('t3-btn',false,'🎯 開始對比，產出 Excel');
 }
+
+
+
+// ══════════════════════════════════════════════════════════════
+//  SETTINGS PRESET MEMORY (3 slots)
+// ══════════════════════════════════════════════════════════════
+const CFG_PRESET_KEY = 'oft_cfg_presets_v1';
+
+function getCfgPresets(){
+  try{ return JSON.parse(localStorage.getItem(CFG_PRESET_KEY)||'[]'); }catch(e){ return []; }
+}
+function saveCfgPresets(arr){
+  try{ localStorage.setItem(CFG_PRESET_KEY, JSON.stringify(arr)); }catch(e){}
+}
+
+function saveCfgPreset(slot){
+  // First apply current input values to CFG
+  saveCfg(true); // silent save
+  const name = prompt(`為這組設定命名（第 ${slot+1} 格）：`, CFG.typeDealer+'/'+ CFG.typeRetail || `設定 ${slot+1}`);
+  if(!name) return;
+  const presets = getCfgPresets();
+  presets[slot] = { name, cfg: Object.assign({}, CFG) };
+  saveCfgPresets(presets);
+  renderCfgPresets();
+  setActiveCfgPreset(slot);
+  log('t4-log', `✅ 已儲存欄位設定「${name}」到第 ${slot+1} 格`, 'ok');
+}
+
+function loadCfgPreset(slot){
+  const presets = getCfgPresets();
+  const p = presets[slot];
+  if(!p) return;
+  Object.assign(CFG, p.cfg);
+  // Fill all inputs
+  loadCfg();
+  setActiveCfgPreset(slot);
+  log('t4-log', `📥 已載入設定「${p.name}」`, 'ok');
+}
+
+function setActiveCfgPreset(slot){
+  [0,1,2].forEach(i=>{
+    const el = document.getElementById('cfgslot-'+i);
+    if(el) el.classList.toggle('active', i===slot);
+  });
+}
+
+function renderCfgPresets(){
+  const presets = getCfgPresets();
+  [0,1,2].forEach(i=>{
+    const nameEl = document.getElementById('cfgslot-name-'+i);
+    if(!nameEl) return;
+    const p = presets[i];
+    nameEl.textContent = p ? p.name : '空白';
+    nameEl.title = p ? `經銷:${p.cfg.typeDealer} / 實體:${p.cfg.typeRetail}` : '尚未儲存';
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  EX PRESET MEMORY (3 slots, stored in localStorage)
+// ══════════════════════════════════════════════════════════════
+const EX_PRESET_KEY = 'oft_ex_presets_v1';
+
+function getExPresets(){
+  try{ return JSON.parse(localStorage.getItem(EX_PRESET_KEY)||'[]'); }catch(e){ return []; }
+}
+function saveExPresets(arr){
+  try{ localStorage.setItem(EX_PRESET_KEY, JSON.stringify(arr)); }catch(e){}
+}
+
+function savePreset(slot){
+  event && event.stopPropagation();
+  const sheet  = document.getElementById('ex-sheet').value.trim();
+  const nameKey= document.getElementById('ex-name-key').value.trim();
+  const qtyKey = document.getElementById('ex-qty-key').value.trim();
+
+  // Ask for a name
+  const suggested = sheet||nameKey||`設定 ${slot+1}`;
+  const name = prompt(`為這個設定命名（第 ${slot+1} 格）：`, suggested);
+  if(!name) return;
+
+  const presets = getExPresets();
+  presets[slot] = { name, sheet, nameKey, qtyKey };
+  saveExPresets(presets);
+  renderPresets();
+  // Mark active
+  setActivePreset(slot);
+  log('t2-log', `✅ 已儲存設定「${name}」到第 ${slot+1} 格`, 'ok');
+}
+
+function loadPreset(slot){
+  const presets = getExPresets();
+  const p = presets[slot];
+  if(!p){ return; }
+  document.getElementById('ex-sheet').value    = p.sheet   || '';
+  document.getElementById('ex-name-key').value = p.nameKey || '';
+  document.getElementById('ex-qty-key').value  = p.qtyKey  || '';
+  setActivePreset(slot);
+  log('t2-log', `📥 已載入設定「${p.name}」`, 'ok');
+}
+
+function setActivePreset(slot){
+  [0,1,2].forEach(i=>{
+    const el = document.getElementById('pslot-'+i);
+    if(el) el.classList.toggle('active', i===slot);
+  });
+}
+
+function renderPresets(){
+  const presets = getExPresets();
+  [0,1,2].forEach(i=>{
+    const nameEl = document.getElementById('pslot-name-'+i);
+    if(!nameEl) return;
+    const p = presets[i];
+    nameEl.textContent = p ? p.name : '空白';
+    nameEl.title = p ? `分頁:${p.sheet} / 品名:${p.nameKey} / 數量:${p.qtyKey}` : '尚未儲存';
+  });
+}
+
+// Call on load
+document.addEventListener('DOMContentLoaded', renderPresets);
 
 // ══ DRAG & DROP ═════════════════════════════════════════════
 ['dz1','dz2','dz3'].forEach(id=>{
